@@ -7,66 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5144837A1F9B52C600621F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483791F9B52C600621F76 /* AppDelegate.swift */; };
-		5144837C1F9B52C600621F76 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5144837B1F9B52C600621F76 /* MasterViewController.swift */; };
-		5144837E1F9B52C600621F76 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5144837D1F9B52C600621F76 /* DetailViewController.swift */; };
-		514483811F9B52C600621F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5144837F1F9B52C600621F76 /* Main.storyboard */; };
-		514483831F9B52C600621F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514483821F9B52C600621F76 /* Assets.xcassets */; };
-		514483861F9B52C600621F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514483841F9B52C600621F76 /* LaunchScreen.storyboard */; };
-		514483911F9B52C600621F76 /* PersonelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483901F9B52C600621F76 /* PersonelTests.swift */; };
-		5144839C1F9B52C600621F76 /* PersonelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5144839B1F9B52C600621F76 /* PersonelUITests.swift */; };
+		514483B61F9B535100621F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483B51F9B535100621F76 /* AppDelegate.swift */; };
+		514483B91F9B535100621F76 /* Personel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 514483B71F9B535100621F76 /* Personel.xcdatamodeld */; };
+		514483BB1F9B535200621F76 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483BA1F9B535200621F76 /* MasterViewController.swift */; };
+		514483BD1F9B535200621F76 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483BC1F9B535200621F76 /* DetailViewController.swift */; };
+		514483C01F9B535200621F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514483BE1F9B535200621F76 /* Main.storyboard */; };
+		514483C21F9B535200621F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514483C11F9B535200621F76 /* Assets.xcassets */; };
+		514483C51F9B535200621F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514483C31F9B535200621F76 /* LaunchScreen.storyboard */; };
+		514483D01F9B535200621F76 /* PersonelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483CF1F9B535200621F76 /* PersonelTests.swift */; };
+		514483DB1F9B535200621F76 /* PersonelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483DA1F9B535200621F76 /* PersonelUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5144838D1F9B52C600621F76 /* PBXContainerItemProxy */ = {
+		514483CC1F9B535200621F76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5144836E1F9B52C600621F76 /* Project object */;
+			containerPortal = 514483AA1F9B535100621F76 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 514483751F9B52C600621F76;
+			remoteGlobalIDString = 514483B11F9B535100621F76;
 			remoteInfo = Personel;
 		};
-		514483981F9B52C600621F76 /* PBXContainerItemProxy */ = {
+		514483D71F9B535200621F76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5144836E1F9B52C600621F76 /* Project object */;
+			containerPortal = 514483AA1F9B535100621F76 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 514483751F9B52C600621F76;
+			remoteGlobalIDString = 514483B11F9B535100621F76;
 			remoteInfo = Personel;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		514483761F9B52C600621F76 /* Personel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Personel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		514483791F9B52C600621F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5144837B1F9B52C600621F76 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		5144837D1F9B52C600621F76 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		514483801F9B52C600621F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		514483821F9B52C600621F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		514483851F9B52C600621F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		514483871F9B52C600621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5144838C1F9B52C600621F76 /* PersonelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		514483901F9B52C600621F76 /* PersonelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonelTests.swift; sourceTree = "<group>"; };
-		514483921F9B52C600621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		514483971F9B52C600621F76 /* PersonelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5144839B1F9B52C600621F76 /* PersonelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonelUITests.swift; sourceTree = "<group>"; };
-		5144839D1F9B52C600621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		514483B21F9B535100621F76 /* Personel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Personel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		514483B51F9B535100621F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		514483B81F9B535100621F76 /* Personel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Personel.xcdatamodel; sourceTree = "<group>"; };
+		514483BA1F9B535200621F76 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		514483BC1F9B535200621F76 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		514483BF1F9B535200621F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		514483C11F9B535200621F76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		514483C41F9B535200621F76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		514483C61F9B535200621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		514483CB1F9B535200621F76 /* PersonelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		514483CF1F9B535200621F76 /* PersonelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonelTests.swift; sourceTree = "<group>"; };
+		514483D11F9B535200621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		514483D61F9B535200621F76 /* PersonelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		514483DA1F9B535200621F76 /* PersonelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonelUITests.swift; sourceTree = "<group>"; };
+		514483DC1F9B535200621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		514483731F9B52C600621F76 /* Frameworks */ = {
+		514483AF1F9B535100621F76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		514483891F9B52C600621F76 /* Frameworks */ = {
+		514483C81F9B535200621F76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		514483941F9B52C600621F76 /* Frameworks */ = {
+		514483D31F9B535200621F76 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,54 +78,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5144836D1F9B52C600621F76 = {
+		514483A91F9B535100621F76 = {
 			isa = PBXGroup;
 			children = (
-				514483781F9B52C600621F76 /* Personel */,
-				5144838F1F9B52C600621F76 /* PersonelTests */,
-				5144839A1F9B52C600621F76 /* PersonelUITests */,
-				514483771F9B52C600621F76 /* Products */,
+				514483B41F9B535100621F76 /* Personel */,
+				514483CE1F9B535200621F76 /* PersonelTests */,
+				514483D91F9B535200621F76 /* PersonelUITests */,
+				514483B31F9B535100621F76 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		514483771F9B52C600621F76 /* Products */ = {
+		514483B31F9B535100621F76 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				514483761F9B52C600621F76 /* Personel.app */,
-				5144838C1F9B52C600621F76 /* PersonelTests.xctest */,
-				514483971F9B52C600621F76 /* PersonelUITests.xctest */,
+				514483B21F9B535100621F76 /* Personel.app */,
+				514483CB1F9B535200621F76 /* PersonelTests.xctest */,
+				514483D61F9B535200621F76 /* PersonelUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		514483781F9B52C600621F76 /* Personel */ = {
+		514483B41F9B535100621F76 /* Personel */ = {
 			isa = PBXGroup;
 			children = (
-				514483791F9B52C600621F76 /* AppDelegate.swift */,
-				5144837B1F9B52C600621F76 /* MasterViewController.swift */,
-				5144837D1F9B52C600621F76 /* DetailViewController.swift */,
-				5144837F1F9B52C600621F76 /* Main.storyboard */,
-				514483821F9B52C600621F76 /* Assets.xcassets */,
-				514483841F9B52C600621F76 /* LaunchScreen.storyboard */,
-				514483871F9B52C600621F76 /* Info.plist */,
+				514483B51F9B535100621F76 /* AppDelegate.swift */,
+				514483BA1F9B535200621F76 /* MasterViewController.swift */,
+				514483BC1F9B535200621F76 /* DetailViewController.swift */,
+				514483BE1F9B535200621F76 /* Main.storyboard */,
+				514483C11F9B535200621F76 /* Assets.xcassets */,
+				514483C31F9B535200621F76 /* LaunchScreen.storyboard */,
+				514483C61F9B535200621F76 /* Info.plist */,
+				514483B71F9B535100621F76 /* Personel.xcdatamodeld */,
 			);
 			path = Personel;
 			sourceTree = "<group>";
 		};
-		5144838F1F9B52C600621F76 /* PersonelTests */ = {
+		514483CE1F9B535200621F76 /* PersonelTests */ = {
 			isa = PBXGroup;
 			children = (
-				514483901F9B52C600621F76 /* PersonelTests.swift */,
-				514483921F9B52C600621F76 /* Info.plist */,
+				514483CF1F9B535200621F76 /* PersonelTests.swift */,
+				514483D11F9B535200621F76 /* Info.plist */,
 			);
 			path = PersonelTests;
 			sourceTree = "<group>";
 		};
-		5144839A1F9B52C600621F76 /* PersonelUITests */ = {
+		514483D91F9B535200621F76 /* PersonelUITests */ = {
 			isa = PBXGroup;
 			children = (
-				5144839B1F9B52C600621F76 /* PersonelUITests.swift */,
-				5144839D1F9B52C600621F76 /* Info.plist */,
+				514483DA1F9B535200621F76 /* PersonelUITests.swift */,
+				514483DC1F9B535200621F76 /* Info.plist */,
 			);
 			path = PersonelUITests;
 			sourceTree = "<group>";
@@ -131,13 +134,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		514483751F9B52C600621F76 /* Personel */ = {
+		514483B11F9B535100621F76 /* Personel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 514483A01F9B52C600621F76 /* Build configuration list for PBXNativeTarget "Personel" */;
+			buildConfigurationList = 514483DF1F9B535200621F76 /* Build configuration list for PBXNativeTarget "Personel" */;
 			buildPhases = (
-				514483721F9B52C600621F76 /* Sources */,
-				514483731F9B52C600621F76 /* Frameworks */,
-				514483741F9B52C600621F76 /* Resources */,
+				514483AE1F9B535100621F76 /* Sources */,
+				514483AF1F9B535100621F76 /* Frameworks */,
+				514483B01F9B535100621F76 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -145,72 +148,72 @@
 			);
 			name = Personel;
 			productName = Personel;
-			productReference = 514483761F9B52C600621F76 /* Personel.app */;
+			productReference = 514483B21F9B535100621F76 /* Personel.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5144838B1F9B52C600621F76 /* PersonelTests */ = {
+		514483CA1F9B535200621F76 /* PersonelTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 514483A31F9B52C600621F76 /* Build configuration list for PBXNativeTarget "PersonelTests" */;
+			buildConfigurationList = 514483E21F9B535200621F76 /* Build configuration list for PBXNativeTarget "PersonelTests" */;
 			buildPhases = (
-				514483881F9B52C600621F76 /* Sources */,
-				514483891F9B52C600621F76 /* Frameworks */,
-				5144838A1F9B52C600621F76 /* Resources */,
+				514483C71F9B535200621F76 /* Sources */,
+				514483C81F9B535200621F76 /* Frameworks */,
+				514483C91F9B535200621F76 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5144838E1F9B52C600621F76 /* PBXTargetDependency */,
+				514483CD1F9B535200621F76 /* PBXTargetDependency */,
 			);
 			name = PersonelTests;
 			productName = PersonelTests;
-			productReference = 5144838C1F9B52C600621F76 /* PersonelTests.xctest */;
+			productReference = 514483CB1F9B535200621F76 /* PersonelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		514483961F9B52C600621F76 /* PersonelUITests */ = {
+		514483D51F9B535200621F76 /* PersonelUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 514483A61F9B52C600621F76 /* Build configuration list for PBXNativeTarget "PersonelUITests" */;
+			buildConfigurationList = 514483E51F9B535200621F76 /* Build configuration list for PBXNativeTarget "PersonelUITests" */;
 			buildPhases = (
-				514483931F9B52C600621F76 /* Sources */,
-				514483941F9B52C600621F76 /* Frameworks */,
-				514483951F9B52C600621F76 /* Resources */,
+				514483D21F9B535200621F76 /* Sources */,
+				514483D31F9B535200621F76 /* Frameworks */,
+				514483D41F9B535200621F76 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				514483991F9B52C600621F76 /* PBXTargetDependency */,
+				514483D81F9B535200621F76 /* PBXTargetDependency */,
 			);
 			name = PersonelUITests;
 			productName = PersonelUITests;
-			productReference = 514483971F9B52C600621F76 /* PersonelUITests.xctest */;
+			productReference = 514483D61F9B535200621F76 /* PersonelUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5144836E1F9B52C600621F76 /* Project object */ = {
+		514483AA1F9B535100621F76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Ion Utale";
 				TargetAttributes = {
-					514483751F9B52C600621F76 = {
+					514483B11F9B535100621F76 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 					};
-					5144838B1F9B52C600621F76 = {
+					514483CA1F9B535200621F76 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 514483751F9B52C600621F76;
+						TestTargetID = 514483B11F9B535100621F76;
 					};
-					514483961F9B52C600621F76 = {
+					514483D51F9B535200621F76 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 514483751F9B52C600621F76;
+						TestTargetID = 514483B11F9B535100621F76;
 					};
 				};
 			};
-			buildConfigurationList = 514483711F9B52C600621F76 /* Build configuration list for PBXProject "Personel" */;
+			buildConfigurationList = 514483AD1F9B535100621F76 /* Build configuration list for PBXProject "Personel" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -218,37 +221,37 @@
 				en,
 				Base,
 			);
-			mainGroup = 5144836D1F9B52C600621F76;
-			productRefGroup = 514483771F9B52C600621F76 /* Products */;
+			mainGroup = 514483A91F9B535100621F76;
+			productRefGroup = 514483B31F9B535100621F76 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				514483751F9B52C600621F76 /* Personel */,
-				5144838B1F9B52C600621F76 /* PersonelTests */,
-				514483961F9B52C600621F76 /* PersonelUITests */,
+				514483B11F9B535100621F76 /* Personel */,
+				514483CA1F9B535200621F76 /* PersonelTests */,
+				514483D51F9B535200621F76 /* PersonelUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		514483741F9B52C600621F76 /* Resources */ = {
+		514483B01F9B535100621F76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				514483861F9B52C600621F76 /* LaunchScreen.storyboard in Resources */,
-				514483831F9B52C600621F76 /* Assets.xcassets in Resources */,
-				514483811F9B52C600621F76 /* Main.storyboard in Resources */,
+				514483C51F9B535200621F76 /* LaunchScreen.storyboard in Resources */,
+				514483C21F9B535200621F76 /* Assets.xcassets in Resources */,
+				514483C01F9B535200621F76 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5144838A1F9B52C600621F76 /* Resources */ = {
+		514483C91F9B535200621F76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		514483951F9B52C600621F76 /* Resources */ = {
+		514483D41F9B535200621F76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -258,60 +261,61 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		514483721F9B52C600621F76 /* Sources */ = {
+		514483AE1F9B535100621F76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5144837E1F9B52C600621F76 /* DetailViewController.swift in Sources */,
-				5144837C1F9B52C600621F76 /* MasterViewController.swift in Sources */,
-				5144837A1F9B52C600621F76 /* AppDelegate.swift in Sources */,
+				514483B61F9B535100621F76 /* AppDelegate.swift in Sources */,
+				514483B91F9B535100621F76 /* Personel.xcdatamodeld in Sources */,
+				514483BB1F9B535200621F76 /* MasterViewController.swift in Sources */,
+				514483BD1F9B535200621F76 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		514483881F9B52C600621F76 /* Sources */ = {
+		514483C71F9B535200621F76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				514483911F9B52C600621F76 /* PersonelTests.swift in Sources */,
+				514483D01F9B535200621F76 /* PersonelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		514483931F9B52C600621F76 /* Sources */ = {
+		514483D21F9B535200621F76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5144839C1F9B52C600621F76 /* PersonelUITests.swift in Sources */,
+				514483DB1F9B535200621F76 /* PersonelUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5144838E1F9B52C600621F76 /* PBXTargetDependency */ = {
+		514483CD1F9B535200621F76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 514483751F9B52C600621F76 /* Personel */;
-			targetProxy = 5144838D1F9B52C600621F76 /* PBXContainerItemProxy */;
+			target = 514483B11F9B535100621F76 /* Personel */;
+			targetProxy = 514483CC1F9B535200621F76 /* PBXContainerItemProxy */;
 		};
-		514483991F9B52C600621F76 /* PBXTargetDependency */ = {
+		514483D81F9B535200621F76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 514483751F9B52C600621F76 /* Personel */;
-			targetProxy = 514483981F9B52C600621F76 /* PBXContainerItemProxy */;
+			target = 514483B11F9B535100621F76 /* Personel */;
+			targetProxy = 514483D71F9B535200621F76 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5144837F1F9B52C600621F76 /* Main.storyboard */ = {
+		514483BE1F9B535200621F76 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				514483801F9B52C600621F76 /* Base */,
+				514483BF1F9B535200621F76 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		514483841F9B52C600621F76 /* LaunchScreen.storyboard */ = {
+		514483C31F9B535200621F76 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				514483851F9B52C600621F76 /* Base */,
+				514483C41F9B535200621F76 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -319,7 +323,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5144839E1F9B52C600621F76 /* Debug */ = {
+		514483DD1F9B535200621F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -376,7 +380,7 @@
 			};
 			name = Debug;
 		};
-		5144839F1F9B52C600621F76 /* Release */ = {
+		514483DE1F9B535200621F76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -426,7 +430,7 @@
 			};
 			name = Release;
 		};
-		514483A11F9B52C600621F76 /* Debug */ = {
+		514483E01F9B535200621F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -441,7 +445,7 @@
 			};
 			name = Debug;
 		};
-		514483A21F9B52C600621F76 /* Release */ = {
+		514483E11F9B535200621F76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -456,7 +460,7 @@
 			};
 			name = Release;
 		};
-		514483A41F9B52C600621F76 /* Debug */ = {
+		514483E31F9B535200621F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -473,7 +477,7 @@
 			};
 			name = Debug;
 		};
-		514483A51F9B52C600621F76 /* Release */ = {
+		514483E41F9B535200621F76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -490,7 +494,7 @@
 			};
 			name = Release;
 		};
-		514483A71F9B52C600621F76 /* Debug */ = {
+		514483E61F9B535200621F76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -506,7 +510,7 @@
 			};
 			name = Debug;
 		};
-		514483A81F9B52C600621F76 /* Release */ = {
+		514483E71F9B535200621F76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -525,43 +529,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		514483711F9B52C600621F76 /* Build configuration list for PBXProject "Personel" */ = {
+		514483AD1F9B535100621F76 /* Build configuration list for PBXProject "Personel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5144839E1F9B52C600621F76 /* Debug */,
-				5144839F1F9B52C600621F76 /* Release */,
+				514483DD1F9B535200621F76 /* Debug */,
+				514483DE1F9B535200621F76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		514483A01F9B52C600621F76 /* Build configuration list for PBXNativeTarget "Personel" */ = {
+		514483DF1F9B535200621F76 /* Build configuration list for PBXNativeTarget "Personel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				514483A11F9B52C600621F76 /* Debug */,
-				514483A21F9B52C600621F76 /* Release */,
+				514483E01F9B535200621F76 /* Debug */,
+				514483E11F9B535200621F76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		514483A31F9B52C600621F76 /* Build configuration list for PBXNativeTarget "PersonelTests" */ = {
+		514483E21F9B535200621F76 /* Build configuration list for PBXNativeTarget "PersonelTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				514483A41F9B52C600621F76 /* Debug */,
-				514483A51F9B52C600621F76 /* Release */,
+				514483E31F9B535200621F76 /* Debug */,
+				514483E41F9B535200621F76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		514483A61F9B52C600621F76 /* Build configuration list for PBXNativeTarget "PersonelUITests" */ = {
+		514483E51F9B535200621F76 /* Build configuration list for PBXNativeTarget "PersonelUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				514483A71F9B52C600621F76 /* Debug */,
-				514483A81F9B52C600621F76 /* Release */,
+				514483E61F9B535200621F76 /* Debug */,
+				514483E71F9B535200621F76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		514483B71F9B535100621F76 /* Personel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				514483B81F9B535100621F76 /* Personel.xcdatamodel */,
+			);
+			currentVersion = 514483B81F9B535100621F76 /* Personel.xcdatamodel */;
+			path = Personel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
-	rootObject = 5144836E1F9B52C600621F76 /* Project object */;
+	rootObject = 514483AA1F9B535100621F76 /* Project object */;
 }
