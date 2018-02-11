@@ -36,10 +36,9 @@ class HeaderRequestAdapter: RequestAdapter, RequestRetrier {
         
         if  let accessToken: String = userManager.userToken {
             urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        } else {
-            urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         }
+        
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         return urlRequest
     }
     
