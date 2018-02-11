@@ -28,10 +28,11 @@
 		51DABE94202FC565003EA59A /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABE93202FC565003EA59A /* ErrorModel.swift */; };
 		51DABE96202FC8B3003EA59A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABE95202FC8B3003EA59A /* LoginVC.swift */; };
 		51DABE99202FCC70003EA59A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABE98202FCC70003EA59A /* MainVC.swift */; };
-		51DABE9C202FCF77003EA59A /* DataRange.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51DABE9B202FCF77003EA59A /* DataRange.xib */; };
+		51DABE9C202FCF77003EA59A /* DataRangeCollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51DABE9B202FCF77003EA59A /* DataRangeCollView.xib */; };
 		51DABE9E202FD299003EA59A /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABE9D202FD299003EA59A /* DateRange.swift */; };
 		51DABEA2202FD373003EA59A /* WorkedHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABEA0202FD373003EA59A /* WorkedHours.swift */; };
 		51DABEA3202FD373003EA59A /* WorkedHours.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51DABEA1202FD373003EA59A /* WorkedHours.xib */; };
+		51DABEA5202FDEC4003EA59A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABEA4202FDEC4003EA59A /* Transaction.swift */; };
 		80207608AF57627AFB513600 /* Pods_PersonelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7214AF2C0236DB08EBA53D31 /* Pods_PersonelTests.framework */; };
 		949E542BCF55A289CF4071CD /* Pods_PersonelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C43F795F50AA87C4750465 /* Pods_PersonelUITests.framework */; };
 		D2EF7862DF4C06336CD66BF2 /* Pods_Personel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96E141A68FB1BDD274371D39 /* Pods_Personel.framework */; };
@@ -85,10 +86,11 @@
 		51DABE93202FC565003EA59A /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
 		51DABE95202FC8B3003EA59A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		51DABE98202FCC70003EA59A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		51DABE9B202FCF77003EA59A /* DataRange.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataRange.xib; sourceTree = "<group>"; };
+		51DABE9B202FCF77003EA59A /* DataRangeCollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataRangeCollView.xib; sourceTree = "<group>"; };
 		51DABE9D202FD299003EA59A /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
 		51DABEA0202FD373003EA59A /* WorkedHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkedHours.swift; sourceTree = "<group>"; };
 		51DABEA1202FD373003EA59A /* WorkedHours.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkedHours.xib; sourceTree = "<group>"; };
+		51DABEA4202FDEC4003EA59A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		7214AF2C0236DB08EBA53D31 /* Pods_PersonelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		772C3B6CFA911223312076CF /* Pods-Personel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Personel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Personel/Pods-Personel.debug.xcconfig"; sourceTree = "<group>"; };
 		89AAF03B6BAA53E86E6DDDE2 /* Pods-PersonelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PersonelTests/Pods-PersonelTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,7 +190,7 @@
 				514483BE1F9B535200621F76 /* Main.storyboard */,
 				514483C31F9B535200621F76 /* LaunchScreen.storyboard */,
 				51DABE75202FB267003EA59A /* Enrollment.storyboard */,
-				51DABE9B202FCF77003EA59A /* DataRange.xib */,
+				51DABE9B202FCF77003EA59A /* DataRangeCollView.xib */,
 				51DABEA1202FD373003EA59A /* WorkedHours.xib */,
 			);
 			path = Storyboard;
@@ -238,6 +240,7 @@
 			children = (
 				51DABE8E202FC37D003EA59A /* Token.swift */,
 				51DABE93202FC565003EA59A /* ErrorModel.swift */,
+				51DABEA4202FDEC4003EA59A /* Transaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,7 +412,7 @@
 			files = (
 				51DABE76202FB267003EA59A /* Enrollment.storyboard in Resources */,
 				514483C51F9B535200621F76 /* LaunchScreen.storyboard in Resources */,
-				51DABE9C202FCF77003EA59A /* DataRange.xib in Resources */,
+				51DABE9C202FCF77003EA59A /* DataRangeCollView.xib in Resources */,
 				514483C21F9B535200621F76 /* Assets.xcassets in Resources */,
 				51DABE92202FC3F3003EA59A /* Default-568h@2x.png in Resources */,
 				51DABEA3202FD373003EA59A /* WorkedHours.xib in Resources */,
@@ -604,6 +607,7 @@
 				51DABE79202FB297003EA59A /* ViewController.swift in Sources */,
 				514483B61F9B535100621F76 /* AppDelegate.swift in Sources */,
 				51DABE83202FB3F4003EA59A /* UIColor+Extension.swift in Sources */,
+				51DABEA5202FDEC4003EA59A /* Transaction.swift in Sources */,
 				51DABE7D202FB391003EA59A /* NavigationBarWithLoading.swift in Sources */,
 				51DABE96202FC8B3003EA59A /* LoginVC.swift in Sources */,
 				51DABE8D202FBDEF003EA59A /* UserManager.swift in Sources */,
