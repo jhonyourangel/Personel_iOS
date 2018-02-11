@@ -18,6 +18,10 @@ class MainVC: ViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNC") as! UINavigationController
     }
     
+    static func makeTabBarFromStoryboard() -> UITabBarController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
