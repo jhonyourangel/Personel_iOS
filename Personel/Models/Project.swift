@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class Project: Codable {
+    var name: String?
+    var income: Int?
+}
