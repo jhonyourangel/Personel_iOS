@@ -22,7 +22,7 @@ class Login: ViewController{
         super.viewDidAppear(animated)
         if let token = UserManager().userToken {
             print(token)
-            self.view.window?.rootViewController = MainVC.makeNCFromStoryboard()
+            self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
         }
     }
     
@@ -39,7 +39,7 @@ class Login: ViewController{
             UserManager().userToken = token?.token
             self.loginBtn.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.0, completion: {
                 // login went well go to main view
-                self.view.window?.rootViewController = MainVC.makeNCFromStoryboard()
+                self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
             })
         }
     }
