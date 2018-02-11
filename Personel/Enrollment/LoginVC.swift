@@ -30,9 +30,10 @@ class Login: ViewController{
                 return
             }
             
-            UserManager().userToken = token
+            UserManager().userToken = token?.token
             self.loginBtn.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.0, completion: {
                 // login went well go to main view
+                self.view.window?.rootViewController = MainVC.makeNCFromStoryboard()
             })
             // add code here
         }
