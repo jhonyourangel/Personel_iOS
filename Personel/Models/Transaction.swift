@@ -42,6 +42,7 @@ class Transaction: Codable {
         id = try container.decode(String.self, forKey: .id)
         billed = try container.decode(Bool.self, forKey: .billed)
         description = try container.decode(String.self, forKey: .description)
+        // TODO: after the implementation of the add transaction uncomment those
 //        userId = try container.decode(String.self, forKey: .userId)
 //        projectId = try container.decode(String.self, forKey: .projectId)
 
@@ -58,7 +59,6 @@ class Transaction: Codable {
         endTime = Date.dateFrom(string: dateString)
         
         workedMinutes = Int(endTime!.millisecondsSince1970 - startTime!.millisecondsSince1970) / 60000
-        print(Date.stringFrom(date: startTime!),Date.stringFrom(date:  endTime!), workedMinutes)
     }
 }
 
