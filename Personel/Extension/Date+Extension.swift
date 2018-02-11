@@ -40,6 +40,13 @@ extension Date {
         return dateFormatter.string(from: date)
     }
     
+    static func stringFrom(date: Date, format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        return dateFormatter.string(from: date)
+    }
+    
     static var startDateMilis: Int64 {
         return Int64(Date().timeIntervalSince1970 * 1000)
     }
@@ -69,7 +76,7 @@ extension Date {
         let minutes: Int64! = mil / 1000 / 60
         let secStr: String! = seconds < 10 ? "0\(seconds!)" : "\(seconds!)"
         let minStr: String! = minutes < 10 ? "0\(minutes!)" : "\(minutes!)"
-        return seconds >= 0 ? "\(minStr!):\(secStr!)" : "00:00"
+        return seconds >= 0 ? "\(minStr!)h \(secStr!)m" : "00:00"
     }
 }
 
