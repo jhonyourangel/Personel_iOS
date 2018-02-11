@@ -12,6 +12,15 @@ import Alamofire
 
 
 class Network: NSObject {
+    struct URLs {
+       static let base = "http://192.168.1.220:8080/api"
+       static let login = "\(base)/login"
+       static let transaction = "\(base)/ios/transaction"
+       static let transactions = "\(base)/ios/transaction"
+       static let editTransaction = "\(base)/ios/editTransaction"
+       static let addTransaction = "\(base)/ios/addTransaction"
+    }
+
     
     static let sessionManager: Alamofire.SessionManager = {
         let Header = HeaderRequestAdapter()
@@ -43,7 +52,7 @@ class Network: NSObject {
         let URL = "http://192.168.1.220:8080/api/login"
         
         let parameters: Parameters = [
-            "username": username,
+            "email": username,
             "password": password
         ]
         
@@ -71,5 +80,35 @@ class Network: NSObject {
                 }
             }
         })
+    }
+    
+    static func getTransactions(completion: @escaping([Transaction]?, Int?, Error?) -> ()) {
+        let URL = URLs.transactions
+        
+        sessionManager.request(URL, method: .get, parameters: [:], encoding: URLEncoding.default )
+            //.validate()
+            .responseJSON(completionHandler: { response in
+                let statusCode = response.response?.statusCode
+                switch response.result {
+                case .success(let _):
+                    guard let data = response.data else {
+                        completion(nil, statusCode, ErrorModel.defError())
+                        return
+                    }
+                    do {
+                        let item = try JSONDecoder().decode([Transaction].self, from: data)
+                        completion(item, statusCode, nil)
+                    } catch let jsonError {
+                        print(data.base64EncodedString().base64Decoded(), jsonError)
+                        completion( nil, statusCode, jsonError as NSError)
+                    }
+                case .failure(let error):
+                    if let data = response.data {
+                        completion(nil, statusCode, getNSError( data: data) ?? error as NSError)
+                    } else {
+                        completion(nil, statusCode, error as NSError)
+                    }
+                }
+            })
     }
 }
