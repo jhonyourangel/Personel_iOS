@@ -12,14 +12,35 @@ class MainVC: ViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var transactions: [Transaction]! = [];
+    var workedMin: Int = 0
     static func makeNCFromStoryboard() -> UINavigationController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNC") as! UINavigationController
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UINib(nibName: "DateRange", bundle: nil), forCellWithReuseIdentifier: "dr")
+        collectionView.register(UINib(nibName: "DataRangeCollView", bundle: nil), forCellWithReuseIdentifier: "dr")
         collectionView.register(UINib(nibName: "WorkedHours", bundle: nil), forCellWithReuseIdentifier: "WorkedHours")
+        
+        Network.getTransactions { (trans, sc, error) in
+            if error != nil {
+                self.presentBanner(title: "Error", message: "unable to get transactions.\(error?.localizedDescription ?? "")")
+                return
+            }
+            self.transactions = trans
+            self.workedMin = self.getWorkedMinutes(trans: trans!)
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func getWorkedMinutes(trans: [Transaction]) -> Int {
+        var wMin = 0
+        _ = trans.map { (t) in
+            wMin += t.workedMinutes
+        }
+        return wMin
     }
 }
 
@@ -38,6 +59,7 @@ extension MainVC: UICollectionViewDataSource {
             return cell
         case 1:
             let cell: WorkedHours = collectionView.dequeueReusableCell(withReuseIdentifier: "WorkedHours", for: indexPath) as! WorkedHours
+            cell.workedHours.text = Date.hoursAndMinutesFrom_manualCalculation(mil: Int64(workedMin * 60000))
             return cell
         default:
             let cell: WorkedHours = collectionView.dequeueReusableCell(withReuseIdentifier: "WorkedHours", for: indexPath) as! WorkedHours
@@ -49,10 +71,14 @@ extension MainVC: UICollectionViewDataSource {
        
     }
 }
-//extension MainVC: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return segmentView.selectedSegmentIndex == 0 ? kDraftSize : kMultimediaSize
-//    }
-//}
+extension MainVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0:
+            return CGSize(width: 310.0, height: 49.0)
+        default:
+            return CGSize(width: 310.0, height: 274.0)
+        }
+    }
+}
 
