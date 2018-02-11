@@ -15,10 +15,16 @@ class Network: NSObject {
     struct URLs {
        static let base = "http://192.168.1.220:8080/api"
        static let login = "\(base)/login"
+        
        static let transaction = "\(base)/ios/transaction"
        static let transactions = "\(base)/ios/transaction"
        static let editTransaction = "\(base)/ios/editTransaction"
        static let addTransaction = "\(base)/ios/addTransaction"
+        
+        static let project = "\(base)/ios/project"
+        static let projects = "\(base)/ios/projects"
+        static let editProject = "\(base)/ios/editProject"
+        static let addProject = "\(base)/ios/addProject"
     }
 
     
