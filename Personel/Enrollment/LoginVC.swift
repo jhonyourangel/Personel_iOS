@@ -16,9 +16,15 @@ class Login: ViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let token = UserManager().userToken {
+            print(token)
+            self.view.window?.rootViewController = MainVC.makeNCFromStoryboard()
+        }
+    }
     
     @IBAction func login() {
         loginBtn.startAnimation()
@@ -35,7 +41,6 @@ class Login: ViewController{
                 // login went well go to main view
                 self.view.window?.rootViewController = MainVC.makeNCFromStoryboard()
             })
-            // add code here
         }
     }
 }
