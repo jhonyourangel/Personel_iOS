@@ -9,6 +9,8 @@
 import UIKit
 
 class WorkedHours: UICollectionViewCell {
+    
+    @IBOutlet weak var workedHours: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -17,4 +17,8 @@ class DateRange: UICollectionViewCell {
     @IBOutlet weak var endMonth: UILabel!
     @IBOutlet weak var endYear: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 }

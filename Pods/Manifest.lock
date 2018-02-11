@@ -1,0 +1,37 @@
+PODS:
+  - AKPickerView-Swift (2.0.1)
+  - Alamofire (4.6.0)
+  - AlamofireNetworkActivityIndicator (2.2.0):
+    - Alamofire (~> 4.5)
+  - BRYXBanner (0.8.0)
+  - KeychainAccess (3.1.0)
+  - TransitionButton (0.3.0)
+
+DEPENDENCIES:
+  - AKPickerView-Swift (from `https://github.com/jhonyourangel/AKPickerView-Swift.git`)
+  - Alamofire (~> 4.5)
+  - AlamofireNetworkActivityIndicator (~> 2.2)
+  - BRYXBanner
+  - KeychainAccess
+  - TransitionButton
+
+EXTERNAL SOURCES:
+  AKPickerView-Swift:
+    :git: https://github.com/jhonyourangel/AKPickerView-Swift.git
+
+CHECKOUT OPTIONS:
+  AKPickerView-Swift:
+    :commit: 0c5f6b72df4be86ad1e0acf6ab14e5fb341a310e
+    :git: https://github.com/jhonyourangel/AKPickerView-Swift.git
+
+SPEC CHECKSUMS:
+  AKPickerView-Swift: 4969de689bee54f720dd64700f7aaab02a8f2ddc
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  BRYXBanner: 406c3775789136531da6f3c98058be2f16e08a34
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  TransitionButton: 0bf7e5ffe80030f9d10d57983a04acf2f511998a
+
+PODFILE CHECKSUM: f6229529ce8fc210f2b9b82d4dc2f88cbbdb476a
+
+COCOAPODS: 1.4.0
