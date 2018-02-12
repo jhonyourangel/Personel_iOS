@@ -28,7 +28,13 @@ class MainVC: ViewController {
         collectionView.register(UINib(nibName: "DataRangeCollView", bundle: nil), forCellWithReuseIdentifier: "dr")
         collectionView.register(UINib(nibName: "WorkedHours", bundle: nil), forCellWithReuseIdentifier: "WorkedHours")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startLoader()
         Network.getTransactions { (trans, sc, error) in
+            self.stopLoader()
             if error != nil {
                 self.presentBanner(title: "Error", message: "unable to get transactions.\(error?.localizedDescription ?? "")")
                 return
