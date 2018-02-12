@@ -16,8 +16,13 @@ class History: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: "HistoryRecordView", bundle: nil), forCellWithReuseIdentifier: "history")
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startLoader()
         Network.getTransactions { (trans, sc, error) in
+            self.stopLoader()
             if error != nil {
                 self.presentBanner(title: "Error", message: "unable to get transactions.\(error?.localizedDescription ?? "")")
                 return
