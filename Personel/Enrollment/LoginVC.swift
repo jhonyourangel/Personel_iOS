@@ -20,6 +20,7 @@ class Login: ViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        UserManager().userToken = nil
         if let token = UserManager().userToken {
             print(token)
             self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
