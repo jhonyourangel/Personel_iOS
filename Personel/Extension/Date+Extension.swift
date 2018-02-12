@@ -10,6 +10,24 @@ import Foundation
 
 extension Date {
     
+    static func timeFrom(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.date
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
+        return dateFormatter.string(from: date)
+    }
+    
+    static func dateFromSimple(string: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
+        guard let date = dateFormatter.date(from: string) else {
+            fatalError("ERROR: Date conversion failed due to mismatched format.")
+        }
+        return date
+    }
+    
     static func dateFrom(string: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
