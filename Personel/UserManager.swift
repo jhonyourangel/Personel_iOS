@@ -11,6 +11,25 @@ import KeychainAccess
 
 class UserManager {
     private let kUserTokenKey = "userToken"
+    
+    static var projects: [Project]! {
+        get {
+            if  let encoded = UserDefaults.standard.object(forKey: "projects") {
+                if let decoded = try? JSONDecoder().decode([Project].self, from: encoded as! Data) {
+                    return decoded
+                }
+            }
+            return []
+        }
+        set (newValue) {
+            if let newValue = newValue , let encoded = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encoded, forKey: "projects")
+            } else {
+                // not sure about the remove function
+                UserDefaults.standard.removeObject(forKey: "projects")
+            }
+        }
+    }
 
     static func keyChain() -> Keychain {
         return Keychain(server:  "http://localhost", protocolType: .http)
