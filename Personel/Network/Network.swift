@@ -13,7 +13,8 @@ import Alamofire
 
 class Network: NSObject {
     struct URLs {
-       static let base = "http://192.168.1.220:8080/api"
+//        static let base = "http://192.168.1.220:8080/api"
+        static let base = "http://mean-personel.a3c1.starter-us-west-1.openshiftapps.com/api"
        static let login = "\(base)/login"
         
        static let transaction = "\(base)/ios/transaction"
@@ -55,7 +56,7 @@ class Network: NSObject {
     }
     
     static func login(username: String, password: String, completion: @escaping(Token?, Int?, Error?) -> ()) {
-        let URL = "http://192.168.1.220:8080/api/login"
+        let URL = URLs.login
         
         let parameters: Parameters = [
             "email": username,
@@ -110,6 +111,50 @@ class Network: NSObject {
                     }
                 case .failure(let error):
                     if let data = response.data {
+                        print(error)
+                        print(data.base64EncodedString().base64Decoded())
+                        completion(nil, statusCode, getNSError( data: data) ?? error as NSError)
+                    } else {
+                        completion(nil, statusCode, error as NSError)
+                    }
+                }
+            })
+    }
+    
+    static func addTransaction(description: String,
+                               startTime: String,
+                               endTime: String,
+                               userId: String,
+                               projectId: String,
+                               completion: @escaping(Transaction?, Int?, Error?) -> ()) {
+        let URL = URLs.addTransaction
+        let parameters: Parameters = [
+            "description": description,
+            "startTime": startTime,
+            "endTime": endTime,
+            "userId": userId,
+            "projectId": projectId
+        ]
+        sessionManager.request(URL, method: .post, parameters: parameters, encoding: URLEncoding.default )
+            //.validate()
+            .responseJSON(completionHandler: { response in
+                let statusCode = response.response?.statusCode
+                switch response.result {
+                case .success(let _):
+                    guard let data = response.data else {
+                        completion(nil, statusCode, ErrorModel.defError())
+                        return
+                    }
+                    do {
+                        let item = try JSONDecoder().decode(Transaction.self, from: data)
+                        completion(item, statusCode, nil)
+                    } catch let jsonError {
+                        print(data.base64EncodedString().base64Decoded(), jsonError)
+                        completion( nil, statusCode, jsonError as NSError)
+                    }
+                case .failure(let error):
+                    if let data = response.data {
+                        print(error.localizedDescription, statusCode)
                         completion(nil, statusCode, getNSError( data: data) ?? error as NSError)
                     } else {
                         completion(nil, statusCode, error as NSError)
