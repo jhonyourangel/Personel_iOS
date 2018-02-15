@@ -12,7 +12,10 @@ target 'Personel' do
   pod 'AKPickerView-Swift', :git => 'https://github.com/jhonyourangel/AKPickerView-Swift.git'
   pod 'TransitionButton'
   pod 'BRYXBanner'
-
+  pod 'HGCircularSlider'
+  pod 'FSCalendar'
+  pod 'JTAppleCalendar'
+  
   target 'PersonelTests' do
     inherit! :search_paths
     # Pods for testing
