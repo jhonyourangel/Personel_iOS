@@ -42,9 +42,8 @@ class Transaction: Codable {
         id = try container.decode(String.self, forKey: .id)
         billed = try container.decode(Bool.self, forKey: .billed)
         description = try container.decode(String.self, forKey: .description)
-        // TODO: after the implementation of the add transaction uncomment those
-//        userId = try container.decode(String.self, forKey: .userId)
-//        projectId = try container.decode(String.self, forKey: .projectId)
+        userId = try container.decode(String.self, forKey: .userId)
+        projectId = try container.decode(String.self, forKey: .projectId)
 
         var dateString = try container.decode(String.self, forKey: .creationDate)
         creationDate = Date.dateFrom(string: dateString)

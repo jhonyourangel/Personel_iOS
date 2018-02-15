@@ -42,27 +42,46 @@
                         <color key="textColor" red="0.0" green="0.31372549020000001" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coin_blue" translatesAutoresizingMaskIntoConstraints="NO" id="bsK-OF-sBv">
+                        <rect key="frame" x="24" y="98" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="0nd-n7-cgw"/>
+                            <constraint firstAttribute="width" constant="40" id="xyr-m1-v1Q"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="160" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0z5-pK-kdh">
+                        <rect key="frame" x="72" y="98" width="56" height="39.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                        <color key="textColor" red="0.0" green="0.31372549020000001" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="NZL-dc-rJt" firstAttribute="centerY" secondItem="bxM-k4-UQp" secondAttribute="centerY" id="22X-wW-Ua0"/>
                 <constraint firstItem="lQg-zP-X2p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="91j-O6-CSZ"/>
+                <constraint firstItem="0z5-pK-kdh" firstAttribute="leading" secondItem="bsK-OF-sBv" secondAttribute="trailing" constant="8" id="HYx-uC-j8t"/>
+                <constraint firstItem="bsK-OF-sBv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="QIz-cF-k9J"/>
                 <constraint firstItem="lQg-zP-X2p" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="RAL-TU-VZQ"/>
+                <constraint firstItem="0z5-pK-kdh" firstAttribute="centerY" secondItem="bsK-OF-sBv" secondAttribute="centerY" id="fhA-3s-0Ar"/>
                 <constraint firstItem="bxM-k4-UQp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="g8M-mu-mIm"/>
                 <constraint firstItem="NZL-dc-rJt" firstAttribute="leading" secondItem="bxM-k4-UQp" secondAttribute="trailing" constant="8" id="hNG-BM-1TS"/>
+                <constraint firstItem="bsK-OF-sBv" firstAttribute="top" secondItem="bxM-k4-UQp" secondAttribute="bottom" constant="8" id="i40-a9-BHt"/>
                 <constraint firstItem="bxM-k4-UQp" firstAttribute="top" secondItem="lQg-zP-X2p" secondAttribute="bottom" constant="8" id="lht-7I-iYk"/>
                 <constraint firstAttribute="trailing" secondItem="lQg-zP-X2p" secondAttribute="trailing" constant="24" id="yqW-PU-gTi"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="226" height="274"/>
             <connections>
+                <outlet property="earned" destination="0z5-pK-kdh" id="XU0-7S-fLC"/>
                 <outlet property="workedHours" destination="NZL-dc-rJt" id="k27-kB-IVt"/>
             </connections>
             <point key="canvasLocation" x="-54" y="237"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="coin_blue" width="32" height="32"/>
         <image name="if_clock_118681" width="256" height="256"/>
     </resources>
 </document>

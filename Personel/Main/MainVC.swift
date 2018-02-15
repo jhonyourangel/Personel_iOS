@@ -14,6 +14,8 @@ class MainVC: ViewController {
     
     var transactions: [Transaction]! = [];
     var workedMin: Int = 0
+    var earned: Int = 0
+    
     static func makeNCFromStoryboard() -> UINavigationController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNC") as! UINavigationController
     }
@@ -40,7 +42,9 @@ class MainVC: ViewController {
                 return
             }
             self.transactions = trans
-            self.workedMin = self.getWorkedMinutes(trans: trans!)
+            let workedMin = self.getWorkedMinutes(trans: trans!)
+            self.workedMin = workedMin
+            
             self.collectionView.reloadData()
         }
     }
@@ -49,7 +53,11 @@ class MainVC: ViewController {
         var wMin = 0
         _ = trans.map { (t) in
             wMin += t.workedMinutes
+            if let proj = UserManager.projects.filter({ $0._id == t.projectId }).first {
+                self.earned += proj.income! * (t.workedMinutes / 60) / 100
+            }
         }
+        
         return wMin
     }
 }
@@ -70,6 +78,7 @@ extension MainVC: UICollectionViewDataSource {
         case 1:
             let cell: WorkedHours = collectionView.dequeueReusableCell(withReuseIdentifier: "WorkedHours", for: indexPath) as! WorkedHours
             cell.workedHours.text = Date.hoursAndMinutesFrom_manualCalculation(mil: Int64(workedMin * 60000))
+            cell.earned.text = "\(self.earned)€"
             return cell
         default:
             let cell: WorkedHours = collectionView.dequeueReusableCell(withReuseIdentifier: "WorkedHours", for: indexPath) as! WorkedHours

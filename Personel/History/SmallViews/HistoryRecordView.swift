@@ -20,15 +20,29 @@ class HistoryRecordView: UICollectionViewCell {
     
     @IBOutlet weak var billedImage: UIImageView!
     
+    var workedTime: Int! = 0
+    
+    var projectId: String! {
+        didSet {
+            if let proj = UserManager.projects.filter({ $0._id == projectId }).first {
+                projectNameL.text = proj.name!
+                earnedL.text = "\(proj.income! * (self.workedTime / 60) / 100)€"
+            }
+            else {
+                projectNameL.text = ""
+                earnedL.text = "0.0€"
+            }
+        }
+    }
+    
     var billed: Bool! {
-        didSet{
+        didSet {
             billedImage.image = self.billed ? #imageLiteral(resourceName: "coin (8)") : #imageLiteral(resourceName: "coin_black")
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
-
 }

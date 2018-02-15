@@ -55,11 +55,14 @@ extension History: UICollectionViewDataSource {
         let cell: HistoryRecordView = collectionView.dequeueReusableCell(withReuseIdentifier: "history", for: indexPath) as! HistoryRecordView
         let t = transactions[indexPath.row]
         
-//        cell.projectNameL.text = t.projectId
+        cell.projectId = t.projectId
+        cell.workedTime = t.workedMinutes
+        
         cell.startTimeL.text = Date.stringFrom(date: t.startTime!, format: "HH:mm")
         cell.endTimeL.text = Date.stringFrom(date: t.endTime!, format: "HH:mm")
         cell.workedTimeL.text = Date.hoursAndMinutesFrom_manualCalculation(mil: Int64(t.workedMinutes * 60000))
         cell.billed = t.billed
+        
         return cell
     }
     

@@ -84,7 +84,7 @@
                             <constraint firstAttribute="height" constant="20" id="Yab-ai-Rji"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60€" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hg3-on-af1">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60€" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hg3-on-af1">
                         <rect key="frame" x="228" y="42" width="54" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="54" id="xpb-Kn-xVe"/>

@@ -25,7 +25,8 @@ class AddTransactionVC: ViewController {
         super.viewDidLoad()
         startTimePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         endTimePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-
+        projectPicker.selectedRow(inComponent: 0)
+        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboardByTappingOutside))
         
         self.view.addGestureRecognizer(tap)
