@@ -13,13 +13,12 @@ class Transaction: Codable {
     var editDate: Date?
     var billed: Bool?
     var _id: String?
-    var id: String?
     var description: String?
     var startTime: Date?
     var endTime: Date?
     var userId: String?
-    var projectId: String?
-    
+    var projectName: String?
+
     var workedMinutes: Int! = 0
     
     private enum CodingKeys: String, CodingKey {
@@ -27,23 +26,21 @@ class Transaction: Codable {
         case editDate
         case billed
         case _id
-        case id
         case description
         case startTime
         case endTime
         case userId
-        case projectId
+        case projectName
     }
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         _id = try container.decode(String.self, forKey: ._id)
-        id = try container.decode(String.self, forKey: .id)
         billed = try container.decode(Bool.self, forKey: .billed)
         description = try container.decode(String.self, forKey: .description)
         userId = try container.decode(String.self, forKey: .userId)
-        projectId = try container.decode(String.self, forKey: .projectId)
+        projectName = try container.decode(String.self, forKey: .projectName)
 
         var dateString = try container.decode(String.self, forKey: .creationDate)
         creationDate = Date.dateFrom(string: dateString)

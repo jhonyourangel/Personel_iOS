@@ -19,9 +19,7 @@ class History: ViewController {
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.startLoader()
+    fileprivate func getTransactions() {
         Network.getTransactions { (trans, sc, error) in
             self.stopLoader()
             if error != nil {
@@ -31,6 +29,12 @@ class History: ViewController {
             self.transactions = trans
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startLoader()
+        getTransactions()
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -50,6 +54,29 @@ class History: ViewController {
 
 extension History: UITableViewDelegate {}
 extension History: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            let trans = transactions[indexPath.row]
+            self.startLoader()
+            Network.deleteTransaction(id: trans._id!, completion: { (genericResposne, statusCode, error) in
+                self.stopLoader()
+                
+                //                print(genericResposne?.msg, genericResposne?.project?._id, genericResposne?.project?.name)
+                
+                if error != nil {
+                    self.presentBanner(title: "Error", message: "The projet could not be deleted", backgroundColor: .white)
+                } else {
+                    self.getTransactions()
+                }
+            })
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactions.count
     }
@@ -58,13 +85,23 @@ extension History: UITableViewDataSource {
         let cell: HistoryRecordViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryRecordViewCell
         let t = transactions[indexPath.row]
         
-        cell.projectId = t.projectId
-        cell.workedTime = t.workedMinutes
         
+        if let proj = UserManager.projects.filter({ $0.name == t.projectName }).first {
+            print(proj.income!)
+            cell.projectNameL.text = proj.name!
+            cell.earnedL.text = "\(proj.income! * (t.workedMinutes / 60) / 100)€"
+        } else {
+            cell.projectNameL.text = ""
+            cell.earnedL.text = "0.0€"
+        }
+        
+        cell.dateL.text = Date.stringFrom(date: t.startTime!, format: "dd MMMM yyyy")
         cell.startTimeL.text = Date.stringFrom(date: t.startTime!, format: "HH:mm")
         cell.endTimeL.text = Date.stringFrom(date: t.endTime!, format: "HH:mm")
         cell.workedTimeL.text = Date.hoursAndMinutesFrom_manualCalculation(mil: Int64(t.workedMinutes * 60000))
-        cell.billed = t.billed
+        
+        cell.billedImage.image = t.billed! ? #imageLiteral(resourceName: "coin (8)") : #imageLiteral(resourceName: "coin_black")
+
         
         return cell
     }

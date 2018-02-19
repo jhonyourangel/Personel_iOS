@@ -16,37 +16,56 @@ class AddTransactionVC: ViewController {
     let formater = DateFormatter()
     
     @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var bedtimeLabel: UILabel!
-    @IBOutlet weak var wakeLabel: UILabel!
+    @IBOutlet weak var startTime: UILabel!
+    @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var rangeCircularSlider: RangeCircularSlider!
+    @IBOutlet weak var sliderHeightCnst: NSLayoutConstraint!
+    
+    var selectedDate: Date?
     
     lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "HH:mm"
         return dateFormatter
     }()
     
+    @IBOutlet weak var projectNameBtn: TransitionButton!
     @IBOutlet weak var saveBtn: TransitionButton!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
 
     var projects: [Project]! = UserManager.projects
     
-    var selectedProjectId: String! = ""
     var transaction: Transaction?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpcalendar()
-        calendarView.scrollToDate(Date())
-        calendarView.selectDates([Date()])
-        calendarView.visibleDates { (visibleDates) in
-            self.setupViewOfCalendar(visibleDates: visibleDates)
+        setupCircularSlider()
+        sliderHeightCnst.constant = transaction != nil ? 200 : sliderHeightCnst.constant
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = (transaction == nil)
+        projects = UserManager.projects
+        projectNameBtn.setTitle(projects.first?.name, for: .normal)
+        
+        if transaction != nil {
+            rangeCircularSlider.startPointValue = Date.secondsFrom(date: transaction!.startTime!)
+            rangeCircularSlider.endPointValue = Date.secondsFrom(date: transaction!.endTime!)
         }
     }
     
     func setUpcalendar() {
+        let today = Date()
+        selectedDate = today
+        calendarView.scrollToDate(today)
+        calendarView.selectDates([today])
+        calendarView.visibleDates { (visibleDates) in
+            self.setupViewOfCalendar(visibleDates: visibleDates)
+        }
+        
         calendarView.ibCalendarDelegate = self
         calendarView.ibCalendarDataSource = self
 
@@ -64,14 +83,19 @@ class AddTransactionVC: ViewController {
     }
     
     func addTransaction() {
-        let startDate = "" //"\(stringDateTF.text!) \(Date.timeFrom(date:startTimePicker.date))"
-        let endDate = "" // "\(stringDateTF.text!) \(Date.timeFrom(date:endTimePicker.date))"
+        if selectedDate == nil { return }
+
+        UserManager.startTimeSlider = rangeCircularSlider.startPointValue
+        UserManager.endTimeSlider = rangeCircularSlider.endPointValue
+
+        let startDate = "\(Date.stringDateFrom(date: selectedDate!)) \(startTime.text!)"
+        let endDate = "\(Date.stringDateFrom(date: selectedDate!)) \(endTime.text!)"
         let userId = UserManager().user?._id
         
         saveBtn.startAnimation()
         self.startLoader()
         
-        Network.addTransaction(description: "no desc", startTime: startDate, endTime: endDate, userId: userId! , projectId: selectedProjectId) { (tran, statusCode, error) in
+        Network.addTransaction(description: "no desc", startTime: startDate, endTime: endDate, userId: userId! , projectName: projectNameBtn.title(for: .normal)!) { (tran, statusCode, error) in
             self.saveBtn.stopAnimation()
             self.stopLoader()
             if error != nil {
@@ -85,6 +109,33 @@ class AddTransactionVC: ViewController {
     
     func editTransaction() {
         // todo: save the edited transaction
+        if selectedDate == nil { return }
+        
+        UserManager.startTimeSlider = rangeCircularSlider.startPointValue
+        UserManager.endTimeSlider = rangeCircularSlider.endPointValue
+        
+        let startDate = "\(Date.stringDateFrom(date: selectedDate!)) \(startTime.text!)"
+        let endDate = "\(Date.stringDateFrom(date: selectedDate!)) \(endTime.text!)"
+        let userId = UserManager().user?._id
+        
+        saveBtn.startAnimation()
+        self.startLoader()
+        
+        Network.editTransaction(id: transaction!._id!,
+                                description: "no desc",
+                                startTime: startDate,
+                                endTime: endDate,
+                                userId: userId! ,
+                                projectName: projectNameBtn.title(for: .normal)!) {
+                                    (tran, statusCode, error) in
+            self.saveBtn.stopAnimation()
+            self.stopLoader()
+            if error != nil {
+                self.presentBanner(title: "error", message: (error?.localizedDescription)!)
+                return
+            }
+            self.presentBanner(title: "trasaction saved", message: "")
+        }
     }
     
     func setupViewOfCalendar(visibleDates: DateSegmentInfo) {
@@ -97,6 +148,8 @@ class AddTransactionVC: ViewController {
     func updateFullDate(date: Date) {
         formater.dateFormat = "EEEE dd MMMM yyyy"
         monthLabel.text = formater.string(from: date)
+
+        selectedDate = date
     }
     
     func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
@@ -113,6 +166,13 @@ class AddTransactionVC: ViewController {
     func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? CalendarCell else { return }
         cell.selectedView.isHidden = !cellState.isSelected
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "projectsVC" {
+            let destination = segue.destination as! ProjectsVC
+            destination.delegate = self
+        }
     }
 }
 
@@ -161,8 +221,6 @@ extension AddTransactionVC: JTAppleCalendarViewDelegate {
         print("deselected")
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-        updateFullDate(date: date)
-
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -178,8 +236,8 @@ extension AddTransactionVC {
         let dayInSeconds = 24 * 60 * 60
         rangeCircularSlider.maximumValue = CGFloat(dayInSeconds)
         
-        rangeCircularSlider.startPointValue = 1 * 60 * 60
-        rangeCircularSlider.endPointValue = 8 * 60 * 60
+        rangeCircularSlider.startPointValue = UserManager.startTimeSlider
+        rangeCircularSlider.endPointValue = UserManager.endTimeSlider
         
         updateTexts(rangeCircularSlider)
     }
@@ -191,25 +249,33 @@ extension AddTransactionVC {
         adjustValue(value: &rangeCircularSlider.endPointValue)
         
         
-        let bedtime = TimeInterval(rangeCircularSlider.startPointValue)
-        let bedtimeDate = Date(timeIntervalSinceReferenceDate: bedtime)
-        bedtimeLabel.text = dateFormatter.string(from: bedtimeDate)
+        let starttime = TimeInterval(rangeCircularSlider.startPointValue)
+        let endtime = Date(timeIntervalSinceReferenceDate: starttime)
+        startTime.text = dateFormatter.string(from: endtime)
         
         let wake = TimeInterval(rangeCircularSlider.endPointValue)
         let wakeDate = Date(timeIntervalSinceReferenceDate: wake)
-        wakeLabel.text = dateFormatter.string(from: wakeDate)
+        endTime.text = dateFormatter.string(from: wakeDate)
         
-        let duration = wake - bedtime
+        let duration = wake - starttime
         let durationDate = Date(timeIntervalSinceReferenceDate: duration)
         dateFormatter.dateFormat = "HH:mm"
         durationLabel.text = dateFormatter.string(from: durationDate)
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "HH:mm"
+    
     }
     
     func adjustValue(value: inout CGFloat) {
         let minutes = value / 60
         let adjustedMinutes =  ceil(minutes / 5.0) * 5
         value = adjustedMinutes * 60
+    }
+    
+}
+
+extension AddTransactionVC: ProjectsDelegate {
+    func projectName(name: String) {
+        projectNameBtn.setTitle(name, for: .normal)
     }
 }
 

@@ -27,6 +27,14 @@ class Login: ViewController{
         }
     }
     
+    static func makeVCFromStoryboard() -> Login {
+        return UIStoryboard(name: "Enrollment", bundle: nil).instantiateViewController(withIdentifier: "login") as! Login
+    }
+    
+    static func login() {
+        UIApplication.shared.keyWindow?.rootViewController = Login.makeVCFromStoryboard()
+    }
+    
     @IBAction func login() {
         loginBtn.startAnimation()
         Network.login(username: emailTF.text!, password: passwordTF.text!) { (user, statusCode, error) in

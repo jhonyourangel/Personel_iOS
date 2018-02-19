@@ -15,7 +15,7 @@ extension Network {
         let URL = URLs.transactions
         
         sessionManager.request(URL, method: .get, parameters: [:], encoding: URLEncoding.default )
-            //.validate()
+            .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
                 switch response.result {
@@ -47,7 +47,7 @@ extension Network {
                                startTime: String,
                                endTime: String,
                                userId: String,
-                               projectId: String,
+                               projectName: String,
                                completion: @escaping(Transaction?, Int?, Error?) -> ()) {
         let URL = URLs.addTransaction
         let parameters: Parameters = [
@@ -55,10 +55,10 @@ extension Network {
             "startTime": startTime,
             "endTime": endTime,
             "userId": userId,
-            "projectId": projectId
+            "projectName": projectName
         ]
         sessionManager.request(URL, method: .post, parameters: parameters, encoding: URLEncoding.default )
-            //.validate()
+            .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
                 switch response.result {
@@ -85,5 +85,78 @@ extension Network {
             })
     }
 
+    static func editTransaction(id: String,
+                                description: String,
+                               startTime: String,
+                               endTime: String,
+                               userId: String,
+                               projectName: String,
+                               completion: @escaping(Transaction?, Int?, Error?) -> ()) {
+        let URL = URLs.editTransaction
+        let parameters: Parameters = [
+            "id" : id,
+            "description": description,
+            "startTime": startTime,
+            "endTime": endTime,
+            "userId": userId,
+            "projectName": projectName
+        ]
+        sessionManager.request(URL, method: .put, parameters: parameters, encoding: URLEncoding.default )
+            .validate()
+            .responseJSON(completionHandler: { response in
+                let statusCode = response.response?.statusCode
+                switch response.result {
+                case .success( _):
+                    guard let data = response.data else {
+                        completion(nil, statusCode, ErrorModel.defError())
+                        return
+                    }
+                    do {
+                        let item = try JSONDecoder().decode(GenericResponse.self, from: data)
+                        completion(item.transaction, statusCode, nil)
+                    } catch let jsonError {
+                        print(data.base64EncodedString().base64Decoded() as Any, jsonError)
+                        completion( nil, statusCode, jsonError as NSError)
+                    }
+                case .failure(let error):
+                    if let data = response.data {
+                        completion(nil, statusCode, getNSError( data: data) ?? error as NSError)
+                    } else {
+                        completion(nil, statusCode, error as NSError)
+                    }
+                }
+            })
+    }
     
+    
+    static func deleteTransaction(id: String, completion: @escaping(GenericResponse?, Int?, Error?) -> ()) {
+        let URL = URLs.deleteTransaction
+        let parameters: Parameters = [ "id": id ]
+        
+        sessionManager.request(URL, method: .delete, parameters: parameters, encoding: URLEncoding.default )
+            .validate()
+            .responseJSON(completionHandler: { response in
+                let statusCode = response.response?.statusCode
+                switch response.result {
+                case .success( _):
+                    guard let data = response.data else {
+                        completion(nil, statusCode, ErrorModel.defError())
+                        return
+                    }
+                    do {
+                        let item = try JSONDecoder().decode(GenericResponse.self, from: data)
+                        completion(item, statusCode, nil)
+                    } catch let jsonError {
+                        print(data.base64EncodedString().base64Decoded() as Any, jsonError)
+                        completion( nil, statusCode, jsonError as NSError)
+                    }
+                case .failure(let error):
+                    if let data = response.data {
+                        completion(nil, statusCode, getNSError( data: data) ?? error as NSError)
+                    } else {
+                        completion(nil, statusCode, error as NSError)
+                    }
+                }
+            })
+    }
 }

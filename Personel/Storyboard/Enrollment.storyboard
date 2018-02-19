@@ -12,7 +12,7 @@
         <!--Login-->
         <scene sceneID="B6r-Ak-2Cb">
             <objects>
-                <viewController id="IOF-4M-ibD" customClass="Login" customModule="Personel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="IOF-4M-ibD" customClass="Login" customModule="Personel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="San-tQ-BRY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

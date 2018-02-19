@@ -9,9 +9,14 @@
 import UIKit
 import TransitionButton
 
+protocol ProjectsDelegate {
+    func projectName(name: String)
+}
+
 class ProjectsVC: ViewController {
     @IBOutlet weak var tableView: UITableView!
     var projects: [Project]! = []
+    var delegate: ProjectsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +24,7 @@ class ProjectsVC: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getProjects()
+        self.navigationController?.isNavigationBarHidden = (delegate != nil)
     }
     
     func getProjects() {
@@ -95,6 +101,11 @@ extension ProjectsVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "addProject", sender: projects[indexPath.row])
+        if delegate == nil {
+            self.performSegue(withIdentifier: "addProject", sender: projects[indexPath.row])
+        } else {
+            delegate?.projectName(name: projects[indexPath.row].name!)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

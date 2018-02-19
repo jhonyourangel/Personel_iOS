@@ -6,14 +6,30 @@
 //  Copyright © 2018 Florence-Consulting. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Date {
     
-    static func timeFrom(date: Date) -> String {
+    static func secondsFrom(date: Date) -> CGFloat {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        // 2018-02-20T08:10:00.000Z
+        let newDate = "1970-01-01T\(dateFormatter.string(from: date)):00.000Z"
+        let seconds = Date.dateFrom(string: newDate).timeIntervalSince1970
+        return CGFloat(seconds)
+    }
+    
+    static func stringTimeFrom(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
+        return dateFormatter.string(from: date)
+    }
+    
+    static func stringDateFrom(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.date
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = TimeZone(abbreviation: "CET")
         return dateFormatter.string(from: date)
     }
@@ -54,14 +70,14 @@ extension Date {
     static func stringFrom(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
         return dateFormatter.string(from: date)
     }
     
     static func stringFrom(date: Date, format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
         return dateFormatter.string(from: date)
     }
     

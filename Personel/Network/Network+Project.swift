@@ -15,7 +15,7 @@ extension Network {
         let URL = URLs.projects
         
         sessionManager.request(URL, method: .get, parameters: [:], encoding: URLEncoding.default )
-            //.validate()
+            .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
                 switch response.result {
@@ -48,7 +48,7 @@ extension Network {
             "income": income
         ]
         sessionManager.request(URL, method: .post, parameters: parameters, encoding: URLEncoding.default )
-            //.validate()
+            .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
                 switch response.result {
@@ -83,7 +83,7 @@ extension Network {
             "income": income
         ]
         sessionManager.request(URL, method: .put, parameters: parameters, encoding: URLEncoding.default )
-            //.validate()
+            .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
                 switch response.result {
@@ -93,8 +93,8 @@ extension Network {
                         return
                     }
                     do {
-                        let item = try JSONDecoder().decode(Project.self, from: data)
-                        completion(item, statusCode, nil)
+                        let item = try JSONDecoder().decode(GenericResponse.self, from: data)
+                        completion(item.project, statusCode, nil)
                     } catch let jsonError {
                         print(data.base64EncodedString().base64Decoded() as Any, jsonError)
                         completion( nil, statusCode, jsonError as NSError)
@@ -115,7 +115,7 @@ extension Network {
         let parameters: Parameters = [ "id": id ]
         
         sessionManager.request(URL, method: .delete, parameters: parameters, encoding: URLEncoding.default )
-            //.validate()
+            .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
                 switch response.result {

@@ -6,14 +6,13 @@ target 'Personel' do
   use_frameworks!
 
   # Pods for Personel
-  pod 'Alamofire', '~> 4.5'
-  pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
+  pod 'Alamofire'
+  pod 'AlamofireNetworkActivityIndicator'
   pod 'KeychainAccess'
   pod 'AKPickerView-Swift', :git => 'https://github.com/jhonyourangel/AKPickerView-Swift.git'
   pod 'TransitionButton'
   pod 'BRYXBanner'
   pod 'HGCircularSlider'
-  #pod 'FSCalendar'
   pod 'JTAppleCalendar'
   
   target 'PersonelTests' do

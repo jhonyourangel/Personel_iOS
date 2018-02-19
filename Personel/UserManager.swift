@@ -30,6 +30,32 @@ class UserManager {
             }
         }
     }
+    
+    static var startTimeSlider: CGFloat {
+        get {
+            if  let encoded = UserDefaults.standard.object(forKey: "startTimeSlider") {
+                return encoded as! CGFloat
+            }
+            return 1 * 60 * 60
+        }
+        set (newValue) {
+                UserDefaults.standard.set(newValue, forKey: "startTimeSlider")
+            
+        }
+    }
+
+    static var endTimeSlider: CGFloat {
+        get {
+            if  let encoded = UserDefaults.standard.object(forKey: "endTimeSlider") {
+                return encoded as! CGFloat
+            }
+            return 8 * 60 * 60
+        }
+        set (newValue) {
+            UserDefaults.standard.set(newValue, forKey: "endTimeSlider")
+            
+        }
+    }
 
     static func keyChain() -> Keychain {
         return Keychain(server:  "http://localhost", protocolType: .http)

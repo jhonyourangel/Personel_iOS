@@ -66,7 +66,7 @@ class Network: NSObject {
         ]
         
         sessionManager.request(URL, method: .post, parameters: parameters, encoding: URLEncoding.default )
-        //.validate()
+        .validate()
         .responseJSON(completionHandler: { response in
             let statusCode = response.response?.statusCode
             switch response.result {
@@ -91,5 +91,6 @@ class Network: NSObject {
         })
     }
     
-    // todo add log out    
+    // todo add refresh token
+    // todo add log out
 }

@@ -47,14 +47,8 @@ class HeaderRequestAdapter: RequestAdapter, RequestRetrier {
         guard request.retryCount == 0 else { return completion(false, 0) } // only 1 retry.. we need to test it
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401{
             // replace the reauth whit something better
-//            Network.reauth() {
-//                statusCode, error in
-//                // the class user has been eliminated. send something else
-//                completion(error == nil, 0.0)
-//                if let err = error {
-//                    print("still returns statusCode: \(statusCode), error: \(err)")
-//                }
-//            }
+            UserManager().logout()
+            Login.login()
         } else {
             completion(false, 0.0)      // not a 401, not our problem
         }

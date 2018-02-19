@@ -53,7 +53,7 @@ class MainVC: ViewController {
         var wMin = 0
         _ = trans.map { (t) in
             wMin += t.workedMinutes
-            if let proj = UserManager.projects.filter({ $0._id == t.projectId }).first {
+            if let proj = UserManager.projects.filter({ $0.name == t.projectName }).first {
                 self.earned += proj.income! * (t.workedMinutes / 60) / 100
             }
         }
