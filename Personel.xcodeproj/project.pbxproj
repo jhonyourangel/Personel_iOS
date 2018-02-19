@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5122FF8D2035F8FD008D4519 /* Network+Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122FF8C2035F8FD008D4519 /* Network+Transaction.swift */; };
+		5122FF8F2035FAEF008D4519 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122FF8E2035FAEF008D4519 /* GenericResponse.swift */; };
+		5122FF9120361034008D4519 /* HistoryRecordViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5122FF9020361034008D4519 /* HistoryRecordViewCell.xib */; };
+		5122FF9320361A2A008D4519 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122FF9220361A2A008D4519 /* User.swift */; };
 		514483B61F9B535100621F76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483B51F9B535100621F76 /* AppDelegate.swift */; };
 		514483B91F9B535100621F76 /* Personel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 514483B71F9B535100621F76 /* Personel.xcdatamodeld */; };
 		514483C01F9B535200621F76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514483BE1F9B535200621F76 /* Main.storyboard */; };
@@ -14,6 +18,8 @@
 		514483C51F9B535200621F76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514483C31F9B535200621F76 /* LaunchScreen.storyboard */; };
 		514483D01F9B535200621F76 /* PersonelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483CF1F9B535200621F76 /* PersonelTests.swift */; };
 		514483DB1F9B535200621F76 /* PersonelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514483DA1F9B535200621F76 /* PersonelUITests.swift */; };
+		517F1D9C20375CAB00F401C2 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517F1D9B20375CAB00F401C2 /* CalendarCell.swift */; };
+		517F1D9E20375D3A00F401C2 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517F1D9D20375D3A00F401C2 /* CalendarVC.swift */; };
 		51DABE76202FB267003EA59A /* Enrollment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51DABE75202FB267003EA59A /* Enrollment.storyboard */; };
 		51DABE79202FB297003EA59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABE78202FB297003EA59A /* ViewController.swift */; };
 		51DABE7D202FB391003EA59A /* NavigationBarWithLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DABE7C202FB391003EA59A /* NavigationBarWithLoading.swift */; };
@@ -67,6 +73,11 @@
 		12A9DD7320E0965B1B48D7DB /* Pods-PersonelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PersonelTests/Pods-PersonelTests.release.xcconfig"; sourceTree = "<group>"; };
 		16C43F795F50AA87C4750465 /* Pods_PersonelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PersonelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443DBB208C12EB029A199A26 /* Pods-PersonelUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PersonelUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PersonelUITests/Pods-PersonelUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5122FF8C2035F8FD008D4519 /* Network+Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network+Transaction.swift"; sourceTree = "<group>"; };
+		5122FF8E2035FAEF008D4519 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		5122FF9020361034008D4519 /* HistoryRecordViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryRecordViewCell.xib; sourceTree = "<group>"; };
+		5122FF9220361A2A008D4519 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		512F1460203B233B0026D376 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		514483B21F9B535100621F76 /* Personel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Personel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		514483B51F9B535100621F76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		514483B81F9B535100621F76 /* Personel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Personel.xcdatamodel; sourceTree = "<group>"; };
@@ -80,6 +91,8 @@
 		514483D61F9B535200621F76 /* PersonelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		514483DA1F9B535200621F76 /* PersonelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonelUITests.swift; sourceTree = "<group>"; };
 		514483DC1F9B535200621F76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		517F1D9B20375CAB00F401C2 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		517F1D9D20375D3A00F401C2 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		51DABE75202FB267003EA59A /* Enrollment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Enrollment.storyboard; sourceTree = "<group>"; };
 		51DABE78202FB297003EA59A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		51DABE7C202FB391003EA59A /* NavigationBarWithLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWithLoading.swift; sourceTree = "<group>"; };
@@ -211,6 +224,7 @@
 				51DABE9B202FCF77003EA59A /* DataRangeCollView.xib */,
 				51DABEA1202FD373003EA59A /* WorkedHours.xib */,
 				51DABEAB20304BD1003EA59A /* HistoryRecordView.xib */,
+				5122FF9020361034008D4519 /* HistoryRecordViewCell.xib */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -251,6 +265,7 @@
 				51DABE87202FB4E0003EA59A /* Network.swift */,
 				51DABE86202FB4E0003EA59A /* PyngNetworkHeader.swift */,
 				51DABEB720308B06003EA59A /* Network+Project.swift */,
+				5122FF8C2035F8FD008D4519 /* Network+Transaction.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -262,6 +277,8 @@
 				51DABE93202FC565003EA59A /* ErrorModel.swift */,
 				51DABEA4202FDEC4003EA59A /* Transaction.swift */,
 				51DABEB920308BD5003EA59A /* Project.swift */,
+				5122FF8E2035FAEF008D4519 /* GenericResponse.swift */,
+				5122FF9220361A2A008D4519 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +315,7 @@
 				51DABEAF2030743E003EA59A /* SmallViews */,
 				51DABEA820304B18003EA59A /* History.swift */,
 				51DABEB020307478003EA59A /* AddTransactionVC.swift */,
+				517F1D9D20375D3A00F401C2 /* CalendarVC.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -306,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				51DABEAA20304BD1003EA59A /* HistoryRecordView.swift */,
+				517F1D9B20375CAB00F401C2 /* CalendarCell.swift */,
 			);
 			path = SmallViews;
 			sourceTree = "<group>";
@@ -414,7 +433,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Ion Utale";
 				TargetAttributes = {
 					514483B11F9B535100621F76 = {
@@ -462,6 +481,7 @@
 				514483C51F9B535200621F76 /* LaunchScreen.storyboard in Resources */,
 				51DABEAD20304BD1003EA59A /* HistoryRecordView.xib in Resources */,
 				51DABE9C202FCF77003EA59A /* DataRangeCollView.xib in Resources */,
+				5122FF9120361034008D4519 /* HistoryRecordViewCell.xib in Resources */,
 				514483C21F9B535200621F76 /* Assets.xcassets in Resources */,
 				51DABE92202FC3F3003EA59A /* Default-568h@2x.png in Resources */,
 				51DABEA3202FD373003EA59A /* WorkedHours.xib in Resources */,
@@ -578,6 +598,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework",
+				"${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
 			);
@@ -587,6 +609,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BRYXBanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGCircularSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
 			);
@@ -655,6 +679,7 @@
 				51DABE8A202FB4E0003EA59A /* Network.swift in Sources */,
 				51DABE82202FB3F4003EA59A /* String+Extension.swift in Sources */,
 				51DABE79202FB297003EA59A /* ViewController.swift in Sources */,
+				5122FF9320361A2A008D4519 /* User.swift in Sources */,
 				51DABEB120307478003EA59A /* AddTransactionVC.swift in Sources */,
 				51DABEB320308353003EA59A /* ProjectsVC.swift in Sources */,
 				514483B61F9B535100621F76 /* AppDelegate.swift in Sources */,
@@ -662,17 +687,21 @@
 				51DABEA5202FDEC4003EA59A /* Transaction.swift in Sources */,
 				51DABE7D202FB391003EA59A /* NavigationBarWithLoading.swift in Sources */,
 				51DABE96202FC8B3003EA59A /* LoginVC.swift in Sources */,
+				5122FF8F2035FAEF008D4519 /* GenericResponse.swift in Sources */,
 				51DABE8D202FBDEF003EA59A /* UserManager.swift in Sources */,
+				517F1D9C20375CAB00F401C2 /* CalendarCell.swift in Sources */,
 				51DABEA2202FD373003EA59A /* WorkedHours.swift in Sources */,
 				514483B91F9B535100621F76 /* Personel.xcdatamodeld in Sources */,
 				51DABE81202FB3F4003EA59A /* Date+Extension.swift in Sources */,
 				51DABEB6203086AC003EA59A /* AddProjectVC.swift in Sources */,
 				51DABE89202FB4E0003EA59A /* PyngNetworkHeader.swift in Sources */,
 				51DABE8F202FC37D003EA59A /* Token.swift in Sources */,
+				517F1D9E20375D3A00F401C2 /* CalendarVC.swift in Sources */,
 				51DABEB820308B06003EA59A /* Network+Project.swift in Sources */,
 				51DABE99202FCC70003EA59A /* MainVC.swift in Sources */,
 				51DABE9E202FD299003EA59A /* DateRange.swift in Sources */,
 				51DABEAC20304BD1003EA59A /* HistoryRecordView.swift in Sources */,
+				5122FF8D2035F8FD008D4519 /* Network+Transaction.swift in Sources */,
 				51DABEBA20308BD5003EA59A /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,6 +742,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				514483BF1F9B535200621F76 /* Base */,
+				512F1460203B233B0026D376 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -742,6 +772,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -749,6 +780,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -799,6 +831,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -806,6 +839,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

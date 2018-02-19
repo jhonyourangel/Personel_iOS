@@ -18,6 +18,10 @@ class ProjectsVC: ViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.getProjects()
+    }
+    
+    func getProjects() {
         self.startLoader()
         Network.getProjects() { (proj, sc, error) in
             if error != nil {
@@ -48,7 +52,28 @@ class ProjectsVC: ViewController {
 }
 
 extension ProjectsVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            let proj = projects[indexPath.row]
+            self.startLoader()
+            Network.deleteProject(id: proj._id!, completion: { (genericResposne, statusCode, error) in
+                self.stopLoader()
+                
+//                print(genericResposne?.msg, genericResposne?.project?._id, genericResposne?.project?.name)
+                
+                if error != nil {
+                    self.presentBanner(title: "Error", message: "The projet could not be deleted", backgroundColor: .white)
+                } else {
+                    self.getProjects()
+                }
+            })
+        }
+    }
 }
 
 extension ProjectsVC: UITableViewDataSource {

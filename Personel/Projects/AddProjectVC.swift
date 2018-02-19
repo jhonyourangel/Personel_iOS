@@ -60,7 +60,6 @@ class AddProjectVC: ViewController {
 
             }
         }
-    
 }
 
 extension AddProjectVC: UITextFieldDelegate {

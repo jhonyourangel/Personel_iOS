@@ -4,6 +4,8 @@ PODS:
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
   - BRYXBanner (0.8.0)
+  - HGCircularSlider (2.0.0)
+  - JTAppleCalendar (7.1.5)
   - KeychainAccess (3.1.0)
   - TransitionButton (0.3.0)
 
@@ -12,6 +14,8 @@ DEPENDENCIES:
   - Alamofire (~> 4.5)
   - AlamofireNetworkActivityIndicator (~> 2.2)
   - BRYXBanner
+  - HGCircularSlider
+  - JTAppleCalendar
   - KeychainAccess
   - TransitionButton
 
@@ -29,9 +33,11 @@ SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   BRYXBanner: 406c3775789136531da6f3c98058be2f16e08a34
+  HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
+  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   TransitionButton: 0bf7e5ffe80030f9d10d57983a04acf2f511998a
 
-PODFILE CHECKSUM: f6229529ce8fc210f2b9b82d4dc2f88cbbdb476a
+PODFILE CHECKSUM: 942b2f21796b7342060b97754c07e80f044ffb33
 
 COCOAPODS: 1.4.0

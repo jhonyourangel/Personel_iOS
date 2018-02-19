@@ -41,6 +41,25 @@ class UserManager {
         }
     }
     
+    var user: User? {
+        get {
+            if  let encoded = UserDefaults.standard.object(forKey: "user") {
+                if let decoded = try? JSONDecoder().decode(User.self, from: encoded as! Data) {
+                    return decoded
+                }
+            }
+            return nil
+        }
+        set (newValue) {
+            if let newValue = newValue , let encoded = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encoded, forKey: "user")
+            } else {
+                // not sure about the remove function
+                UserDefaults.standard.removeObject(forKey: "user")
+            }
+        }
+    }
+    
     init() {
         let kc = UserManager.keyChain()
         self.userToken = try! kc.getString( kUserTokenKey) ?? nil

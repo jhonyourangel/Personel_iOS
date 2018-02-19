@@ -20,7 +20,7 @@ class Login: ViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UserManager().userToken = nil
+        //UserManager().userToken = nil
         if let token = UserManager().userToken {
             print(token)
             self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
@@ -29,7 +29,7 @@ class Login: ViewController{
     
     @IBAction func login() {
         loginBtn.startAnimation()
-        Network.login(username: emailTF.text!, password: passwordTF.text!) { (token, statusCode, error) in
+        Network.login(username: emailTF.text!, password: passwordTF.text!) { (user, statusCode, error) in
             
             if error != nil {
                 self.presentBanner(title: "Error", message: "unable to login, please try again")
@@ -37,7 +37,8 @@ class Login: ViewController{
                 return
             }
             
-            UserManager().userToken = token?.token
+            UserManager().userToken = user?.token
+            UserManager().user = user
             self.loginBtn.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.0, completion: {
                 // login went well go to main view
                 self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()

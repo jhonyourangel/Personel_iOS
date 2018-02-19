@@ -1,0 +1,90 @@
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4T0-5D-n7Q"; */
+"4T0-5D-n7Q.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "0:41"; ObjectID = "5dE-nh-m7c"; */
+"5dE-nh-m7c.text" = "0:41";
+
+/* Class = "UILabel"; text = "End"; ObjectID = "6kX-bt-UdP"; */
+"6kX-bt-UdP.text" = "End";
+
+/* Class = "UILabel"; text = "month"; ObjectID = "8oW-1l-Bvv"; */
+"8oW-1l-Bvv.text" = "month";
+
+/* Class = "UITabBarItem"; title = "Proiecte"; ObjectID = "AXt-Jf-dGg"; */
+"AXt-Jf-dGg.title" = "Proiecte";
+
+/* Class = "UILabel"; text = "12:00 PM"; ObjectID = "AqA-Vi-Wty"; */
+"AqA-Vi-Wty.text" = "12:00 PM";
+
+/* Class = "UILabel"; text = "S"; ObjectID = "D5c-uj-yff"; */
+"D5c-uj-yff.text" = "S";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "EwF-N5-MyV"; */
+"EwF-N5-MyV.text" = "Detail";
+
+/* Class = "UILabel"; text = "S"; ObjectID = "IPm-PK-nfX"; */
+"IPm-PK-nfX.text" = "S";
+
+/* Class = "UILabel"; text = "12:00 PM"; ObjectID = "IWo-fy-6dG"; */
+"IWo-fy-6dG.text" = "12:00 PM";
+
+/* Class = "UILabel"; text = "Bedtime"; ObjectID = "Lyb-TQ-JAQ"; */
+"Lyb-TQ-JAQ.text" = "Bedtime";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Qon-ZD-XWJ"; */
+"Qon-ZD-XWJ.text" = "Title";
+
+/* Class = "UILabel"; text = "12:00 AM"; ObjectID = "UM7-9C-srW"; */
+"UM7-9C-srW.text" = "12:00 AM";
+
+/* Class = "UILabel"; text = "Start"; ObjectID = "XpO-Lg-jSd"; */
+"XpO-Lg-jSd.text" = "Start";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XsH-gf-a8N"; */
+"XsH-gf-a8N.text" = "Label";
+
+/* Class = "UILabel"; text = "M"; ObjectID = "XwB-zp-A3R"; */
+"XwB-zp-A3R.text" = "M";
+
+/* Class = "UILabel"; text = "12:00 AM"; ObjectID = "Y9Q-xu-4py"; */
+"Y9Q-xu-4py.text" = "12:00 AM";
+
+/* Class = "UILabel"; text = "Venit"; ObjectID = "YDf-tA-Ld1"; */
+"YDf-tA-Ld1.text" = "Venit";
+
+/* Class = "UITabBarItem"; title = "Istoric"; ObjectID = "ZHs-f7-9Df"; */
+"ZHs-f7-9Df.title" = "Istoric";
+
+/* Class = "UILabel"; text = "Nume"; ObjectID = "cbI-TT-3bb"; */
+"cbI-TT-3bb.text" = "Nume";
+
+/* Class = "UILabel"; text = "T"; ObjectID = "cdE-tg-Otj"; */
+"cdE-tg-Otj.text" = "T";
+
+/* Class = "UILabel"; text = "Wake"; ObjectID = "eup-RJ-tLL"; */
+"eup-RJ-tLL.text" = "Wake";
+
+/* Class = "UITabBarItem"; title = "Clock"; ObjectID = "fMK-Rh-9r5"; */
+"fMK-Rh-9r5.title" = "Clock";
+
+/* Class = "UITabBarItem"; title = "Analitic"; ObjectID = "ggU-Q8-1am"; */
+"ggU-Q8-1am.title" = "Analitic";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "htr-4n-y8l"; */
+"htr-4n-y8l.title" = "Item";
+
+/* Class = "UILabel"; text = "T"; ObjectID = "k1J-QK-qan"; */
+"k1J-QK-qan.text" = "T";
+
+/* Class = "UILabel"; text = "F"; ObjectID = "nlk-ib-hTV"; */
+"nlk-ib-hTV.text" = "F";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "ok5-Tw-Hi8"; */
+"ok5-Tw-Hi8.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "W"; ObjectID = "yop-Da-gLG"; */
+"yop-Da-gLG.text" = "W";
+
+/* Class = "UILabel"; text = "0:41"; ObjectID = "zlY-8j-k2k"; */
+"zlY-8j-k2k.text" = "0:41";

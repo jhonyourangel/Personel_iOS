@@ -13,7 +13,7 @@ target 'Personel' do
   pod 'TransitionButton'
   pod 'BRYXBanner'
   pod 'HGCircularSlider'
-  pod 'FSCalendar'
+  #pod 'FSCalendar'
   pod 'JTAppleCalendar'
   
   target 'PersonelTests' do

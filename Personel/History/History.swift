@@ -9,13 +9,14 @@
 import UIKit
 
 class History: ViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     var transactions: [Transaction]! = [];
     @IBOutlet weak var addBtn: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UINib(nibName: "HistoryRecordView", bundle: nil), forCellWithReuseIdentifier: "history")
+        tableView.register(UINib(nibName: "HistoryRecordViewCell", bundle: nil), forCellReuseIdentifier: "historyCell")
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,7 +29,7 @@ class History: ViewController {
                 return
             }
             self.transactions = trans
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
     
@@ -36,6 +37,10 @@ class History: ViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "addTransaction" {
+            let destination = segue.destination as! AddTransactionVC
+            destination.transaction = sender as? Transaction
+        }
     }
     
     @IBAction func addTransaction(_ sender: Any) {
@@ -43,16 +48,14 @@ class History: ViewController {
     }
 }
 
-extension History: UICollectionViewDelegate {}
-extension History: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+extension History: UITableViewDelegate {}
+extension History: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return transactions.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell: HistoryRecordView = collectionView.dequeueReusableCell(withReuseIdentifier: "history", for: indexPath) as! HistoryRecordView
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: HistoryRecordViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryRecordViewCell
         let t = transactions[indexPath.row]
         
         cell.projectId = t.projectId
@@ -66,7 +69,7 @@ extension History: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "addTransaction", sender: transactions[indexPath.row])
     }
 }

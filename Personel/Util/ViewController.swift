@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     func presentBanner(title: String, message: String, backgroundColor: UIColor = .ySecondaryColor) {
         let banner = Banner(title: title, subtitle: message, backgroundColor: backgroundColor)
         banner.dismissesOnTap = true
+        banner.textColor = .darkBlue
         banner.show(duration: 3.0)
         
     }
