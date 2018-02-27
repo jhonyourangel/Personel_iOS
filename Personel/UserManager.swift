@@ -10,11 +10,17 @@ import Foundation
 import KeychainAccess
 
 class UserManager {
+    private let kToken = "token"
     private let kUserTokenKey = "userToken"
-    
+    private let kUserTokenExpDate = "userTokenExpDate"
+    private let kProjects = "projects"
+    private let kStartTimeSlider = "startTimeSlider"
+    private let kEndTimeSlider = "endTimeSlider"
+    private let kUser = "user"
+
     static var projects: [Project]! {
         get {
-            if  let encoded = UserDefaults.standard.object(forKey: "projects") {
+            if  let encoded = UserDefaults.standard.object(forKey: UserManager().kProjects) {
                 if let decoded = try? JSONDecoder().decode([Project].self, from: encoded as! Data) {
                     return decoded
                 }
@@ -23,37 +29,35 @@ class UserManager {
         }
         set (newValue) {
             if let newValue = newValue , let encoded = try? JSONEncoder().encode(newValue) {
-                UserDefaults.standard.set(encoded, forKey: "projects")
+                UserDefaults.standard.set(encoded, forKey: UserManager().kProjects)
             } else {
-                // not sure about the remove function
-                UserDefaults.standard.removeObject(forKey: "projects")
+                UserDefaults.standard.removeObject(forKey: UserManager().kProjects)
             }
         }
     }
     
     static var startTimeSlider: CGFloat {
         get {
-            if  let encoded = UserDefaults.standard.object(forKey: "startTimeSlider") {
+            if  let encoded = UserDefaults.standard.object(forKey: UserManager().kStartTimeSlider) {
                 return encoded as! CGFloat
             }
-            return 1 * 60 * 60
+            return 6 * 60 * 60
         }
         set (newValue) {
-                UserDefaults.standard.set(newValue, forKey: "startTimeSlider")
+                UserDefaults.standard.set(newValue, forKey: UserManager().kStartTimeSlider)
             
         }
     }
 
     static var endTimeSlider: CGFloat {
         get {
-            if  let encoded = UserDefaults.standard.object(forKey: "endTimeSlider") {
+            if  let encoded = UserDefaults.standard.object(forKey: UserManager().kEndTimeSlider) {
                 return encoded as! CGFloat
             }
-            return 8 * 60 * 60
+            return 13 * 60 * 60
         }
         set (newValue) {
-            UserDefaults.standard.set(newValue, forKey: "endTimeSlider")
-            
+            UserDefaults.standard.set(newValue, forKey: UserManager().kEndTimeSlider)
         }
     }
 
@@ -61,15 +65,28 @@ class UserManager {
         return Keychain(server:  "http://localhost", protocolType: .http)
     }
     
-    var userToken: String? {
-        didSet {
-            UserManager.keyChain()[kUserTokenKey] = self.userToken
+    var token: Token? {
+        get {
+            if  let encoded = UserDefaults.standard.object(forKey: self.kToken) {
+                if let tokenObj = try? JSONDecoder().decode(Token.self, from: encoded as! Data) {
+                    return tokenObj
+                }
+            }
+            return nil
+        }
+        
+        set (newValue) {
+            if let newValue = newValue , let encoded = try? JSONEncoder().encode(newValue) {
+                UserDefaults.standard.set(encoded, forKey: self.kToken)
+            } else {
+                UserDefaults.standard.removeObject(forKey: self.kToken)
+            }
         }
     }
     
     var user: User? {
         get {
-            if  let encoded = UserDefaults.standard.object(forKey: "user") {
+            if  let encoded = UserDefaults.standard.object(forKey: self.kUser) {
                 if let decoded = try? JSONDecoder().decode(User.self, from: encoded as! Data) {
                     return decoded
                 }
@@ -78,21 +95,20 @@ class UserManager {
         }
         set (newValue) {
             if let newValue = newValue , let encoded = try? JSONEncoder().encode(newValue) {
-                UserDefaults.standard.set(encoded, forKey: "user")
+                UserDefaults.standard.set(encoded, forKey: self.kUser)
             } else {
                 // not sure about the remove function
-                UserDefaults.standard.removeObject(forKey: "user")
+                UserDefaults.standard.removeObject(forKey: self.kUser)
             }
         }
     }
     
     init() {
         let kc = UserManager.keyChain()
-        self.userToken = try! kc.getString( kUserTokenKey) ?? nil
     }
     
     func logout() {
-        self.userToken = nil
+        self.token = nil
         
         let keychain = UserManager.keyChain()
         do {
