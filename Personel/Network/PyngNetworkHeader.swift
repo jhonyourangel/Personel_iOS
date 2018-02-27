@@ -34,7 +34,7 @@ class HeaderRequestAdapter: RequestAdapter, RequestRetrier {
         var urlRequest = urlRequest
         let userManager = UserManager.init()
         
-        if  let accessToken: String = userManager.userToken {
+        if  let accessToken: String = userManager.token?.token {
             urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
         }
         
