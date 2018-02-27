@@ -13,8 +13,8 @@ import Alamofire
 
 class Network: NSObject {
     struct URLs {
-        // static let base = "http://192.168.1.220:8080/api"
-        static let base = "http://mean-personel.a3c1.starter-us-west-1.openshiftapps.com/api"
+        static let base = "http://192.168.1.220:8080/api"
+//        static let base = "http://mean-personel.a3c1.starter-us-west-1.openshiftapps.com/api"
         static let login = "\(base)/login"
         
         static let transaction = "\(base)/ios/transaction"
