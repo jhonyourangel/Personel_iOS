@@ -11,10 +11,22 @@ import Alamofire
 
 extension Network {
     
-    static func getTransactions(completion: @escaping([Transaction]?, Int?, Error?) -> ()) {
+    static func getTransactions(startTime: String = "",
+                                endTime: String = "",
+        completion: @escaping([Transaction]?, Int?, Error?) -> ()) {
         let URL = URLs.transactions
         
-        sessionManager.request(URL, method: .get, parameters: [:], encoding: URLEncoding.default )
+        var parameters: Parameters = [
+            "startTime": startTime,
+            "endTime": endTime
+        ]
+        
+        // in history there is no range selection, this will force getting all of the transactions
+        if startTime == "" {
+            parameters = [:]
+        }
+        
+        sessionManager.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default )
             .validate()
             .responseJSON(completionHandler: { response in
                 let statusCode = response.response?.statusCode
