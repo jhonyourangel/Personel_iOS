@@ -11,25 +11,25 @@ import UIKit
 extension Date {
     
     static func secondsFrom(date: Date) -> CGFloat {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
         // 2018-02-20T08:10:00.000Z
-        let newDate = "1970-01-01T\(dateFormatter.string(from: date)):00.000Z"
+        // this looks awkword but it makes sens
+        // i am taking just the hours and minutes from the date
+        // because the circular slider returns the date in the current year
+        // the bellow line will fix it
+        let newDate = "1970-01-01T\(Date.stringTimeFrom(date: date)):00.000Z"
         let seconds = Date.dateFrom(string: newDate).timeIntervalSince1970
         return CGFloat(seconds)
     }
     
+//    static func stringTimeFrom(date: Date) -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm"
+//        return dateFormatter.string(from: date)
+//    }
+    
     static func stringTimeFrom(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
-        return dateFormatter.string(from: date)
-    }
-    
-    static func stringDateFrom(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.date
-        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = TimeZone(abbreviation: "CET")
         return dateFormatter.string(from: date)
     }
@@ -54,7 +54,7 @@ extension Date {
         return date
     }
     
-    static func dateFrom(string: String, format: String) -> String {
+    static func stringFormatDateFrom(string: String, format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -67,14 +67,21 @@ extension Date {
         return dateFormatter.string(from: date)
     }
     
-    static func stringFrom(date: Date) -> String {
+    static func stringUTCDateFrom(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        return dateFormatter.string(from: date)
+    }
+    
+    static func stringDateFrom(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.timeZone = TimeZone(abbreviation: "CET")
         return dateFormatter.string(from: date)
     }
     
-    static func stringFrom(date: Date, format: String) -> String {
+    static func stringDateFrom(date: Date, format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         dateFormatter.timeZone = TimeZone(abbreviation: "CET")
@@ -111,6 +118,10 @@ extension Date {
         let secStr: String! = seconds < 10 ? "0\(seconds!)" : "\(seconds!)"
         let minStr: String! = minutes < 10 ? "0\(minutes!)" : "\(minutes!)"
         return seconds >= 0 ? "\(minStr!)h \(secStr!)m" : "00:00"
+    }
+    
+    static func dateFromJsonMilis(intDate: Int64) -> Date {
+        return Date(timeIntervalSince1970: Double(intDate))
     }
 }
 
