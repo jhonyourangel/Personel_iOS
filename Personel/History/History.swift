@@ -87,7 +87,7 @@ extension History: UITableViewDataSource {
         
         
         if let proj = UserManager.projects.filter({ $0.name == t.projectName }).first {
-            print(proj.income!)
+            print(proj.income!, proj.name!, t.projectName!)
             cell.projectNameL.text = proj.name!
             cell.earnedL.text = "\(proj.income! * (t.workedMinutes / 60) / 100)€"
         } else {
@@ -95,9 +95,9 @@ extension History: UITableViewDataSource {
             cell.earnedL.text = "0.0€"
         }
         
-        cell.dateL.text = Date.stringFrom(date: t.startTime!, format: "dd MMMM yyyy")
-        cell.startTimeL.text = Date.stringFrom(date: t.startTime!, format: "HH:mm")
-        cell.endTimeL.text = Date.stringFrom(date: t.endTime!, format: "HH:mm")
+        cell.dateL.text = Date.stringDateFrom(date: t.startTime!, format: "dd MMMM yyyy")
+        cell.startTimeL.text = Date.stringDateFrom(date: t.startTime!, format: "HH:mm")
+        cell.endTimeL.text = Date.stringDateFrom(date: t.endTime!, format: "HH:mm")
         cell.workedTimeL.text = Date.hoursAndMinutesFrom_manualCalculation(mil: Int64(t.workedMinutes * 60000))
         
         cell.billedImage.image = t.billed! ? #imageLiteral(resourceName: "coin (8)") : #imageLiteral(resourceName: "coin_black")
