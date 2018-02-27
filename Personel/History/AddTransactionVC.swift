@@ -13,7 +13,7 @@ import HGCircularSlider
 
 class AddTransactionVC: ViewController {
     
-    let formater = DateFormatter()
+    let formatter = DateFormatter()
     
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var startTime: UILabel!
@@ -47,14 +47,15 @@ class AddTransactionVC: ViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = (transaction == nil)
-        projects = UserManager.projects
-        projectNameBtn.setTitle(projects.first?.name, for: .normal)
-        
         if transaction != nil {
             rangeCircularSlider.startPointValue = Date.secondsFrom(date: transaction!.startTime!)
             rangeCircularSlider.endPointValue = Date.secondsFrom(date: transaction!.endTime!)
+            projectNameBtn.setTitle(transaction?.projectName, for: .normal)
+        } else {
+            projects = UserManager.projects
+            projectNameBtn.setTitle(projects.first?.name, for: .normal)
         }
+        
     }
     
     func setUpcalendar() {
@@ -71,7 +72,6 @@ class AddTransactionVC: ViewController {
 
         calendarView.minimumLineSpacing = 0.0
         calendarView.minimumInteritemSpacing = 0.0
-     
     }
     
     @IBAction func saveTransaction() {
@@ -84,6 +84,7 @@ class AddTransactionVC: ViewController {
     
     func addTransaction() {
         if selectedDate == nil { return }
+        guard let projectName = projectNameBtn.title(for: .normal) else { return }
 
         UserManager.startTimeSlider = rangeCircularSlider.startPointValue
         UserManager.endTimeSlider = rangeCircularSlider.endPointValue
@@ -95,7 +96,7 @@ class AddTransactionVC: ViewController {
         saveBtn.startAnimation()
         self.startLoader()
         
-        Network.addTransaction(description: "no desc", startTime: startDate, endTime: endDate, userId: userId! , projectName: projectNameBtn.title(for: .normal)!) { (tran, statusCode, error) in
+        Network.addTransaction(description: "no desc", startTime: startDate, endTime: endDate, userId: userId! , projectName: projectName) { (tran, statusCode, error) in
             self.saveBtn.stopAnimation()
             self.stopLoader()
             if error != nil {
@@ -126,8 +127,7 @@ class AddTransactionVC: ViewController {
                                 startTime: startDate,
                                 endTime: endDate,
                                 userId: userId! ,
-                                projectName: projectNameBtn.title(for: .normal)!) {
-                                    (tran, statusCode, error) in
+                                projectName: projectNameBtn.title(for: .normal)!) { (tran, statusCode, error) in
             self.saveBtn.stopAnimation()
             self.stopLoader()
             if error != nil {
@@ -135,6 +135,8 @@ class AddTransactionVC: ViewController {
                 return
             }
             self.presentBanner(title: "trasaction saved", message: "")
+            self.navigationController?.popViewController(animated: true)
+                                    
         }
     }
     
@@ -146,8 +148,8 @@ class AddTransactionVC: ViewController {
     }
     
     func updateFullDate(date: Date) {
-        formater.dateFormat = "EEEE dd MMMM yyyy"
-        monthLabel.text = formater.string(from: date)
+        formatter.dateFormat = "EEEE dd MMMM yyyy"
+        monthLabel.text = formatter.string(from: date)
 
         selectedDate = date
     }
@@ -179,12 +181,12 @@ class AddTransactionVC: ViewController {
 extension AddTransactionVC: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
-        formater.dateFormat = "yyyy MM dd"
-        formater.timeZone = Calendar.current.timeZone
-        formater.locale = Calendar.current.locale
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = Calendar.current.timeZone
+        formatter.locale = Calendar.current.locale
 
-        let startDate = formater.date(from: "2017 05 01")!
-        let endDate = formater.date(from: "2022 11 01")!
+        let startDate = formatter.date(from: "2017 05 01")!
+        let endDate = formatter.date(from: "2022 11 01")!
         
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endDate,
