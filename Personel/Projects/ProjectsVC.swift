@@ -30,6 +30,8 @@ class ProjectsVC: ViewController {
     func getProjects() {
         self.startLoader()
         Network.getProjects() { (proj, sc, error) in
+            self.stopLoader()
+
             if error != nil {
                 self.presentBanner(title: "Error", message: "unable to get projects.\(error?.localizedDescription ?? "")")
                 return
@@ -37,7 +39,6 @@ class ProjectsVC: ViewController {
             self.projects = proj
             UserManager.projects = proj
             self.tableView.reloadData()
-            self.stopLoader()
         }
     }
     
