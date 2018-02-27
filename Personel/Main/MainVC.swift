@@ -16,6 +16,9 @@ class MainVC: ViewController {
     var workedMin: Int = 0
     var earned: Int = 0
     
+    var beginRangeDate: Date! = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+    var endRangeDate: Date! = Date()
+    
     static func makeNCFromStoryboard() -> UINavigationController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNC") as! UINavigationController
     }
@@ -35,7 +38,20 @@ class MainVC: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.startLoader()
-        Network.getTransactions { (trans, sc, error) in
+        getTransactions()
+    }
+    
+    func getTransactions(beginDate: Date = Calendar.current.date(byAdding: .month, value: -1, 
+                                                                 to: Date())!,
+                         endDate: Date = Date()) {
+        let startDateStr = Date.stringUTCDateFrom(date: beginDate)
+        let endDateStr = Date.stringUTCDateFrom(date: endDate)
+        
+        // don't know where to put those
+        beginRangeDate = beginDate
+        endRangeDate = endDate
+
+        Network.getTransactions(startTime: startDateStr, endTime: endDateStr) { (trans, sc, error) in
             self.stopLoader()
             if error != nil {
                 self.presentBanner(title: "Error", message: "unable to get transactions.\(error?.localizedDescription ?? "")")
@@ -51,6 +67,7 @@ class MainVC: ViewController {
     
     func getWorkedMinutes(trans: [Transaction]) -> Int {
         var wMin = 0
+        earned = 0
         _ = trans.map { (t) in
             wMin += t.workedMinutes
             if let proj = UserManager.projects.filter({ $0.name == t.projectName }).first {
@@ -74,6 +91,14 @@ extension MainVC: UICollectionViewDataSource {
         switch indexPath.row {
         case 0:
             let cell: DateRange = collectionView.dequeueReusableCell(withReuseIdentifier: "dr", for: indexPath) as! DateRange
+            cell.startDay.text = Date.stringDateFrom(date: beginRangeDate, format: "dd")
+            cell.startMonth.text = Date.stringDateFrom(date: beginRangeDate, format: "MMM")
+            cell.startYear.text = Date.stringDateFrom(date: beginRangeDate, format: "yyyy")
+
+            cell.endDay.text = Date.stringDateFrom(date: endRangeDate, format: "dd")
+            cell.endMonth.text = Date.stringDateFrom(date: endRangeDate, format: "MMM")
+            cell.endYear.text = Date.stringDateFrom(date: endRangeDate, format: "yyyy")
+            
             return cell
         case 1:
             let cell: WorkedHours = collectionView.dequeueReusableCell(withReuseIdentifier: "WorkedHours", for: indexPath) as! WorkedHours
@@ -87,7 +112,10 @@ extension MainVC: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        if indexPath.row == 0 {
+            let calendarVC = CalendarVC.makeVCFromStoryboard()
+            self.present(calendarVC, animated: true, completion: nil)
+        }
     }
 }
 extension MainVC: UICollectionViewDelegateFlowLayout {
@@ -98,6 +126,13 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
         default:
             return CGSize(width: 310.0, height: 274.0)
         }
+    }
+}
+
+extension MainVC: CalendarDelegate {
+    func selectedRange(beginRangeDate: Date, endRangeDate: Date) {
+        // to do
+        getTransactions(beginDate: beginRangeDate, endDate: endRangeDate)
     }
 }
 
