@@ -20,9 +20,8 @@ class Login: ViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //UserManager().userToken = nil
-        if let token = UserManager().userToken {
-            print(token)
+        // UserManager().logout()
+        if let token = UserManager().token, Date.dateFromJsonMilis(intDate: token.exp!) >= Date() {
             self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
         }
     }
@@ -45,8 +44,14 @@ class Login: ViewController{
                 return
             }
             
-            UserManager().userToken = user?.token
+            var aToken = Token()
+            let tokenAsData = aToken.tokenToData(t: user!.token!)
+            aToken = aToken.jsonToToken(tJson: tokenAsData)
+            aToken.token = user?.token
+            
+            UserManager().token = aToken
             UserManager().user = user
+            
             self.loginBtn.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.0, completion: {
                 // login went well go to main view
                 self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
