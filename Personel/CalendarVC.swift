@@ -11,7 +11,7 @@ import JTAppleCalendar
 import TransitionButton
 
 protocol CalendarDelegate {
-    func selectedRange(beginRangeDate: Date, endRangeDate: Date)
+    func selectedRange(beginRD: Date, endRD: Date)
 }
 
 class CalendarVC: ViewController {
@@ -56,7 +56,8 @@ class CalendarVC: ViewController {
     
     @IBAction func selectDateRange() {
         rangeDates.sort()
-        delegate.selectedRange(beginRangeDate: rangeDates.first!, endRangeDate: rangeDates.last!)
+        delegate.selectedRange(beginRD: rangeDates.first!, endRD: rangeDates.last!)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancel() {

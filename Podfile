@@ -14,6 +14,7 @@ target 'Personel' do
   pod 'BRYXBanner'
   pod 'HGCircularSlider'
   pod 'JTAppleCalendar'
+  pod 'SwipeCellKit'
   
   target 'PersonelTests' do
     inherit! :search_paths
