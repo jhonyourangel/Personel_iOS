@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class History: ViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -65,11 +66,8 @@ extension History: UITableViewDataSource {
             self.startLoader()
             Network.deleteTransaction(id: trans._id!, completion: { (genericResposne, statusCode, error) in
                 self.stopLoader()
-                
-                //                print(genericResposne?.msg, genericResposne?.project?._id, genericResposne?.project?.name)
-                
                 if error != nil {
-                    self.presentBanner(title: "Error", message: "The projet could not be deleted", backgroundColor: .white)
+                    self.presentBanner(title: "Error", message: "The transaction could not be deleted", backgroundColor: .white)
                 } else {
                     self.getTransactions()
                 }
@@ -83,8 +81,10 @@ extension History: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HistoryRecordViewCell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryRecordViewCell
-        let t = transactions[indexPath.row]
         
+        cell.delegate = self
+        
+        let t = transactions[indexPath.row]
         
         if let proj = UserManager.projects.filter({ $0.name == t.projectName }).first {
             print(proj.income!, proj.name!, t.projectName!)
@@ -109,4 +109,65 @@ extension History: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "addTransaction", sender: transactions[indexPath.row])
     }
+}
+
+extension History: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        let t = transactions[indexPath.row]
+        
+        if orientation == .left {
+            let billedAction = SwipeAction(style: .destructive, title: "Billed") { action, indexPath in
+                // handle action by updating model with deletion
+                self.startLoader()
+                                
+                Network.editTransaction(id: t._id!,
+                                        description: "no desc",
+                                        startTime: Date.stringDateFrom(date: t.startTime!, format: "yyyy-MM-dd HH:mm:ss"),
+                                        endTime: Date.stringDateFrom(date: t.endTime!, format: "yyyy-MM-dd HH:mm:ss"),
+                                        userId: t.userId! ,
+                                        projectName: t.projectName!,
+                                        billed: !t.billed! ) { (tran, statusCode, error) in
+                                            self.stopLoader()
+                                            if error != nil {
+                                                self.presentBanner(title: "error", message: (error?.localizedDescription)!)
+                                                return
+                                            }
+                                            self.presentBanner(title: "trasaction saved", message: "")
+                                            self.transactions[indexPath.row].billed = !t.billed!
+                                            (self.tableView.cellForRow(at: indexPath) as! HistoryRecordViewCell).billedImage.image = t.billed! ? #imageLiteral(resourceName: "coin (8)") : #imageLiteral(resourceName: "coin_black")
+                }
+            }
+            // customize the action appearance
+            billedAction.image = !t.billed! ? #imageLiteral(resourceName: "coin (8)") : #imageLiteral(resourceName: "coin_black")
+            billedAction.title = !t.billed! ? "Billed" : "Not Billed"
+            return [billedAction]
+        }
+        else /*if orientation == .left*/ {
+            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                // handle action by updating model with deletion
+                self.transactions.remove(at: indexPath.row)
+                self.startLoader()
+                Network.deleteTransaction(id: t._id!, completion: { (genericResposne, statusCode, error) in
+                    self.stopLoader()
+                    if error != nil {
+                        self.presentBanner(title: "Error", message: "The transaction could not be deleted", backgroundColor: .white)
+                    } else {
+                        self.getTransactions()
+                    }
+                })
+            }
+
+            return [deleteAction]
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.expansionStyle = orientation == .left ? .selection : .destructive
+        options.transitionStyle = .border
+        
+        return options
+    }
+    
 }
