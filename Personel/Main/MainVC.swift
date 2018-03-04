@@ -38,18 +38,15 @@ class MainVC: ViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.startLoader()
-        getTransactions()
+        getTransactions(beginDate: beginRangeDate, endDate: endRangeDate)
     }
     
-    func getTransactions(beginDate: Date = Calendar.current.date(byAdding: .month, value: -1, 
-                                                                 to: Date())!,
-                         endDate: Date = Date()) {
+    func getTransactions(beginDate: Date,
+                         endDate: Date) {
         let startDateStr = Date.stringUTCDateFrom(date: beginDate)
         let endDateStr = Date.stringUTCDateFrom(date: endDate)
         
         // don't know where to put those
-        beginRangeDate = beginDate
-        endRangeDate = endDate
 
         Network.getTransactions(startTime: startDateStr, endTime: endDateStr) { (trans, sc, error) in
             self.stopLoader()
@@ -114,6 +111,7 @@ extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let calendarVC = CalendarVC.makeVCFromStoryboard()
+            calendarVC.delegate = self
             self.present(calendarVC, animated: true, completion: nil)
         }
     }
@@ -130,9 +128,12 @@ extension MainVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension MainVC: CalendarDelegate {
-    func selectedRange(beginRangeDate: Date, endRangeDate: Date) {
+    func selectedRange(beginRD: Date, endRD: Date) {
         // to do
-        getTransactions(beginDate: beginRangeDate, endDate: endRangeDate)
+        self.beginRangeDate = beginRD
+        self.endRangeDate = endRD
+        
+        getTransactions(beginDate: beginRD, endDate: endRD)
     }
 }
 
