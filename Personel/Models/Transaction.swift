@@ -43,16 +43,16 @@ class Transaction: Codable {
         projectName = try container.decode(String.self, forKey: .projectName)
 
         var dateString = try container.decode(String.self, forKey: .creationDate)
-        creationDate = Date.dateFrom(string: dateString)
+        creationDate = Date.dateWithFullAttributesFrom(string: dateString)
         
         dateString = try container.decode(String.self, forKey: .editDate)
-        editDate = Date.dateFrom(string: dateString)
+        editDate = Date.dateWithFullAttributesFrom(string: dateString)
         
         dateString = try container.decode(String.self, forKey: .startTime)
-        startTime = Date.dateFrom(string: dateString)
+        startTime = Date.dateWithFullAttributesFrom(string: dateString)
         
         dateString = try container.decode(String.self, forKey: .endTime)
-        endTime = Date.dateFrom(string: dateString)
+        endTime = Date.dateWithFullAttributesFrom(string: dateString)
         
         workedMinutes = Int(endTime!.millisecondsSince1970 - startTime!.millisecondsSince1970) / 60000
     }
