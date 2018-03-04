@@ -190,9 +190,7 @@
 				51DABE77202FB274003EA59A /* Storyboard */,
 				51DABE7A202FB2B9003EA59A /* Util */,
 				51DABE7B202FB2CA003EA59A /* Resource */,
-				51DABE8C202FBDEF003EA59A /* UserManager.swift */,
-				5174E5662044885300F6B757 /* CalendarVC.swift */,
-				5174E5682044888E00F6B757 /* CustomCell.swift */,
+				51BAE023204BE4A100BEB0D2 /* Common */,
 				51DABE90202FC3A5003EA59A /* Models */,
 				51DABE97202FCC45003EA59A /* Enrollment */,
 				51DABE9A202FCC74003EA59A /* Main */,
@@ -228,6 +226,16 @@
 				5122FF9020361034008D4519 /* HistoryRecordViewCell.xib */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		51BAE023204BE4A100BEB0D2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				51DABE8C202FBDEF003EA59A /* UserManager.swift */,
+				5174E5662044885300F6B757 /* CalendarVC.swift */,
+				5174E5682044888E00F6B757 /* CustomCell.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		51DABE77202FB274003EA59A /* Storyboard */ = {
