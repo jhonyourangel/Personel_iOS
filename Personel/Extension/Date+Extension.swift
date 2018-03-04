@@ -15,36 +15,21 @@ extension Date {
         // this looks awkword but it makes sens
         // i am taking just the hours and minutes from the date
         // because the circular slider returns the date in the current year
+        // and wee need it to convert it to time for convenience
         // the bellow line will fix it
         let newDate = "1970-01-01T\(Date.stringTimeFrom(date: date)):00.000Z"
-        let seconds = Date.dateFrom(string: newDate).timeIntervalSince1970
+        let seconds = Date.dateWithFullAttributesFrom(string: newDate).timeIntervalSince1970
         return CGFloat(seconds)
     }
-    
-//    static func stringTimeFrom(date: Date) -> String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        return dateFormatter.string(from: date)
-//    }
     
     static func stringTimeFrom(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: date)
     }
     
-    static func dateFromSimple(string: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
-        guard let date = dateFormatter.date(from: string) else {
-            fatalError("ERROR: Date conversion failed due to mismatched format.")
-        }
-        return date
-    }
-    
-    static func dateFrom(string: String) -> Date {
+    static func dateWithFullAttributesFrom(string: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -52,19 +37,6 @@ extension Date {
             fatalError("ERROR: Date conversion failed due to mismatched format.")
         }
         return date
-    }
-    
-    static func stringFormatDateFrom(string: String, format: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        guard let date = dateFormatter.date(from: string) else {
-            fatalError("ERROR: Date conversion failed due to mismatched format.")
-        }
-        
-        dateFormatter.dateFormat = format///this is what you want to convert format
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
-        return dateFormatter.string(from: date)
     }
     
     static func stringUTCDateFrom(date: Date) -> String {
@@ -74,22 +46,11 @@ extension Date {
         return dateFormatter.string(from: date)
     }
     
-    static func stringDateFrom(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
-        return dateFormatter.string(from: date)
-    }
-    
     static func stringDateFrom(date: Date, format: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: date)
-    }
-    
-    static var startDateMilis: Int64 {
-        return Int64(Date().timeIntervalSince1970 * 1000)
     }
     
     static var millisecondsSince1970: Int64 {
@@ -100,7 +61,7 @@ extension Date {
     
     var millisecondsSince1970: Int64 {
         get {
-            return Int64(TimeInterval(self.timeIntervalSince1970 ) * 1000)
+            return Date.millisecondsSince1970
         }
     }
     
@@ -110,14 +71,6 @@ extension Date {
         let minStr: String! = minutes < 10 ? "0\(minutes!)" : "\(minutes!)"
         let hourStr: String! = hours < 10 ? "0\(hours!)" : "\(hours!)"
         return minutes >= 0 ? "\(hourStr!):\(minStr!)" : "00:00"
-    }
-    
-    static func minutesAndSecondsFrom_manualCalculation(mil: Int64) -> String {
-        let seconds: Int64! = (mil / 1000 % 60)
-        let minutes: Int64! = mil / 1000 / 60
-        let secStr: String! = seconds < 10 ? "0\(seconds!)" : "\(seconds!)"
-        let minStr: String! = minutes < 10 ? "0\(minutes!)" : "\(minutes!)"
-        return seconds >= 0 ? "\(minStr!)h \(secStr!)m" : "00:00"
     }
     
     static func dateFromJsonMilis(intDate: Int64) -> Date {
