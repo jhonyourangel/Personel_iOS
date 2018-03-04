@@ -19,7 +19,8 @@ class AddTransactionVC: ViewController {
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var rangeCircularSlider: RangeCircularSlider!
-    @IBOutlet weak var sliderHeightCnst: NSLayoutConstraint!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var selectedDate: Date?
     
@@ -43,7 +44,6 @@ class AddTransactionVC: ViewController {
         super.viewDidLoad()
         setUpcalendar()
         setupCircularSlider()
-        sliderHeightCnst.constant = transaction != nil ? 200 : sliderHeightCnst.constant
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +53,11 @@ class AddTransactionVC: ViewController {
             projectNameBtn.setTitle(transaction?.projectName, for: .normal)
         } else {
             projects = UserManager.projects
-            projectNameBtn.setTitle(projects.first?.name, for: .normal)
+            if let projNameBtn = projectNameBtn.title(for: .normal), projNameBtn != "" {
+                projectNameBtn.setTitle(projNameBtn, for: .normal)
+            } else {
+                projectNameBtn.setTitle(projects.first?.name, for: .normal)
+            }
         }
         
     }
@@ -89,8 +93,8 @@ class AddTransactionVC: ViewController {
         UserManager.startTimeSlider = rangeCircularSlider.startPointValue
         UserManager.endTimeSlider = rangeCircularSlider.endPointValue
 
-        let startDate = "\(Date.stringDateFrom(date: selectedDate!)) \(startTime.text!)"
-        let endDate = "\(Date.stringDateFrom(date: selectedDate!)) \(endTime.text!)"
+        let startDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(startTime.text!)"
+        let endDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(endTime.text!)"
         let userId = UserManager().user?._id
         
         saveBtn.startAnimation()
@@ -104,7 +108,7 @@ class AddTransactionVC: ViewController {
                 return
             }
             self.presentBanner(title: "trasaction saved", message: "")
-            
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -115,8 +119,9 @@ class AddTransactionVC: ViewController {
         UserManager.startTimeSlider = rangeCircularSlider.startPointValue
         UserManager.endTimeSlider = rangeCircularSlider.endPointValue
         
-        let startDate = "\(Date.stringDateFrom(date: selectedDate!)) \(startTime.text!)"
-        let endDate = "\(Date.stringDateFrom(date: selectedDate!)) \(endTime.text!)"
+        // if you eencouter issues just add :00 at the end as seconds
+        let startDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(startTime.text!)"
+        let endDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(endTime.text!)"
         let userId = UserManager().user?._id
         
         saveBtn.startAnimation()
@@ -127,7 +132,8 @@ class AddTransactionVC: ViewController {
                                 startTime: startDate,
                                 endTime: endDate,
                                 userId: userId! ,
-                                projectName: projectNameBtn.title(for: .normal)!) { (tran, statusCode, error) in
+                                projectName: projectNameBtn.title(for: .normal)!,
+                                billed: transaction!.billed!) { (tran, statusCode, error) in
             self.saveBtn.stopAnimation()
             self.stopLoader()
             if error != nil {
@@ -168,6 +174,10 @@ class AddTransactionVC: ViewController {
     func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? CalendarCell else { return }
         cell.selectedView.isHidden = !cellState.isSelected
+    }
+    
+    @IBAction func changeProject () {
+        self.performSegue(withIdentifier: "projectsVC", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -230,6 +240,8 @@ extension AddTransactionVC: JTAppleCalendarViewDelegate {
     }
     
 }
+
+
 // MARK: - circular slider
 extension AddTransactionVC {
     
@@ -278,6 +290,7 @@ extension AddTransactionVC {
 extension AddTransactionVC: ProjectsDelegate {
     func projectName(name: String) {
         projectNameBtn.setTitle(name, for: .normal)
+        transaction?.projectName = name
     }
 }
 
