@@ -103,6 +103,7 @@ extension Network {
                                endTime: String,
                                userId: String,
                                projectName: String,
+                               billed: Bool,
                                completion: @escaping(Transaction?, Int?, Error?) -> ()) {
         let URL = URLs.editTransaction
         let parameters: Parameters = [
@@ -111,6 +112,7 @@ extension Network {
             "startTime": startTime,
             "endTime": endTime,
             "userId": userId,
+            "billed": billed,
             "projectName": projectName
         ]
         sessionManager.request(URL, method: .put, parameters: parameters, encoding: URLEncoding.default )
