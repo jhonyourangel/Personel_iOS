@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class HistoryRecordViewCell: UITableViewCell {
+class HistoryRecordViewCell: SwipeTableViewCell {
     @IBOutlet weak var dateL: UILabel!
     
     @IBOutlet weak var startTimeL: UILabel!
@@ -20,4 +21,10 @@ class HistoryRecordViewCell: UITableViewCell {
     
     @IBOutlet weak var billedImage: UIImageView!
     
+//    var delegate: SwipeTableViewCellDelegate!
+    
+    override func awakeFromNib() {
+
+    }
 }
+
