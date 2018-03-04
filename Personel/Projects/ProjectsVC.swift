@@ -24,7 +24,6 @@ class ProjectsVC: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.getProjects()
-        self.navigationController?.isNavigationBarHidden = (delegate != nil)
     }
     
     func getProjects() {
