@@ -21,7 +21,10 @@ class Login: ViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // UserManager().logout()
-        if let token = UserManager().token, Date.dateFromJsonMilis(intDate: token.exp!) >= Date() {
+        
+        if let token = UserManager().token,
+            let tokenExp = token.exp,
+            Date.dateFromJsonMilis(intDate: tokenExp) >= Date() {
             self.view.window?.rootViewController = MainVC.makeTabBarFromStoryboard()
         }
     }
