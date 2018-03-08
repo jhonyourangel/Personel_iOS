@@ -60,9 +60,7 @@ extension Date {
     }
     
     var millisecondsSince1970: Int64 {
-        get {
-            return Date.millisecondsSince1970
-        }
+        return Int64((self.timeIntervalSince1970 * 1000.0).rounded())
     }
     
     static func hoursAndMinutesFrom_manualCalculation(mil: Int64) -> String {

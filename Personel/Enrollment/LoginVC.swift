@@ -34,7 +34,9 @@ class Login: ViewController{
     }
     
     static func login() {
-        UIApplication.shared.keyWindow?.rootViewController = Login.makeVCFromStoryboard()
+        DispatchQueue.main.async { // Correct
+            UIApplication.shared.keyWindow?.rootViewController = Login.makeVCFromStoryboard()
+        }
     }
     
     @IBAction func login() {
@@ -49,7 +51,7 @@ class Login: ViewController{
             
             var aToken = Token()
             let tokenAsData = aToken.tokenToData(t: user!.token!)
-            aToken = aToken.jsonToToken(tJson: tokenAsData)
+            aToken = aToken.jsonToToken(tJson: tokenAsData)!
             aToken.token = user?.token
             
             UserManager().token = aToken

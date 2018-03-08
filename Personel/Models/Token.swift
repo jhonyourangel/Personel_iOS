@@ -34,8 +34,14 @@ class Token: Codable {
         return NSData(base64Encoded: base64String, options: [])! as Data
     }
     
-    func jsonToToken(tJson: Data) -> Token {
-        return try! JSONDecoder().decode(Token.self, from: tJson)
+    func jsonToToken(tJson: Data) -> Token? {
+        var token: Token? = nil
+        do {
+            token = try! JSONDecoder().decode(Token.self, from: tJson)
+        } catch (let error) {
+            print("token deconding error:", error.localizedDescription)
+        }
+        return token
     }
 }
 
