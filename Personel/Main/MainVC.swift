@@ -37,7 +37,6 @@ class MainVC: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.startLoader()
         getTransactions(beginDate: beginRangeDate, endDate: endRangeDate)
     }
     
@@ -47,7 +46,7 @@ class MainVC: ViewController {
         let endDateStr = Date.stringUTCDateFrom(date: endDate)
         
         // don't know where to put those
-
+        self.startLoader()
         Network.getTransactions(startTime: startDateStr, endTime: endDateStr) { (trans, sc, error) in
             self.stopLoader()
             if error != nil {
