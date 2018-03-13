@@ -22,7 +22,12 @@ class AddTransactionVC: ViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var selectedDate: Date?
+    var selectedDate: Date? {
+        didSet {
+            formatter.dateFormat = "EEEE dd MMMM yyyy"
+            self.monthLabel.text = formatter.string(from: self.selectedDate!)
+        }
+    }
     
     lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -51,6 +56,7 @@ class AddTransactionVC: ViewController {
             rangeCircularSlider.startPointValue = Date.secondsFrom(date: transaction!.startTime!)
             rangeCircularSlider.endPointValue = Date.secondsFrom(date: transaction!.endTime!)
             projectNameBtn.setTitle(transaction?.projectName, for: .normal)
+            updateTexts(rangeCircularSlider)
         } else {
             projects = UserManager.projects
             if let projNameBtn = projectNameBtn.title(for: .normal), projNameBtn != "" {
@@ -63,10 +69,9 @@ class AddTransactionVC: ViewController {
     }
     
     func setUpcalendar() {
-        let today = Date()
-        selectedDate = today
-        calendarView.scrollToDate(today)
-        calendarView.selectDates([today])
+        selectedDate = transaction != nil ? transaction?.startTime : Date()
+        calendarView.scrollToDate(selectedDate!)
+        calendarView.selectDates([selectedDate!])
         calendarView.visibleDates { (visibleDates) in
             self.setupViewOfCalendar(visibleDates: visibleDates)
         }
@@ -93,8 +98,8 @@ class AddTransactionVC: ViewController {
         UserManager.startTimeSlider = rangeCircularSlider.startPointValue
         UserManager.endTimeSlider = rangeCircularSlider.endPointValue
 
-        let startDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(startTime.text!)"
-        let endDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(endTime.text!)"
+        let startDate = "\(Date.stringCETDateFrom(date: selectedDate!)) \(startTime.text!)"
+        let endDate = "\(Date.stringCETDateFrom(date: selectedDate!)) \(endTime.text!)"
         let userId = UserManager().user?._id
         
         saveBtn.startAnimation()
@@ -120,8 +125,8 @@ class AddTransactionVC: ViewController {
         UserManager.endTimeSlider = rangeCircularSlider.endPointValue
         
         // if you eencouter issues just add :00 at the end as seconds
-        let startDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(startTime.text!)"
-        let endDate = "\(Date.stringUTCDateFrom(date: selectedDate!)) \(endTime.text!)"
+        let startDate = "\(Date.stringCETDateFrom(date: selectedDate!)) \(startTime.text!)"
+        let endDate = "\(Date.stringCETDateFrom(date: selectedDate!)) \(endTime.text!)"
         let userId = UserManager().user?._id
         
         saveBtn.startAnimation()
@@ -148,17 +153,20 @@ class AddTransactionVC: ViewController {
     
     func setupViewOfCalendar(visibleDates: DateSegmentInfo) {
         if visibleDates.monthDates.count == 0 { return }
-        let date = visibleDates.monthDates.first!.date
-        
-        updateFullDate(date: date)
+        // not sure why i was resseting the date
+        // each time i was scroling from one week to another
+//        let date = visibleDates.monthDates.first!.date
+//        selectedDate = date
+        print(selectedDate)
+//        updateFullDate(date: date)
     }
     
-    func updateFullDate(date: Date) {
-        formatter.dateFormat = "EEEE dd MMMM yyyy"
-        monthLabel.text = formatter.string(from: date)
-
-        selectedDate = date
-    }
+//    func updateFullDate(date: Date) {
+//        formatter.dateFormat = "EEEE dd MMMM yyyy"
+//        monthLabel.text = formatter.string(from: date)
+//
+//        selectedDate = date
+//    }
     
     func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? CalendarCell else { return }
@@ -192,7 +200,7 @@ extension AddTransactionVC: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
         formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = Calendar.current.timeZone
+        formatter.timeZone = TimeZone(abbreviation: "CET")
         formatter.locale = Calendar.current.locale
 
         let startDate = formatter.date(from: "2017 05 01")!
@@ -225,7 +233,8 @@ extension AddTransactionVC: JTAppleCalendarViewDelegate {
         print("selected")
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-        updateFullDate(date: date)
+        selectedDate = date
+//        updateFullDate(date: date)
 
     }
     
@@ -263,15 +272,15 @@ extension AddTransactionVC {
         adjustValue(value: &rangeCircularSlider.endPointValue)
         
         
-        let starttime = TimeInterval(rangeCircularSlider.startPointValue)
-        let endtime = Date(timeIntervalSinceReferenceDate: starttime)
-        startTime.text = dateFormatter.string(from: endtime)
+        let startT = TimeInterval(rangeCircularSlider.startPointValue)
+        let st = Date(timeIntervalSinceReferenceDate: startT)
+        startTime.text = dateFormatter.string(from: st)
         
-        let wake = TimeInterval(rangeCircularSlider.endPointValue)
-        let wakeDate = Date(timeIntervalSinceReferenceDate: wake)
-        endTime.text = dateFormatter.string(from: wakeDate)
+        let endT = TimeInterval(rangeCircularSlider.endPointValue)
+        let et = Date(timeIntervalSinceReferenceDate: endT)
+        endTime.text = dateFormatter.string(from: et)
         
-        let duration = wake - starttime
+        let duration = endT - startT
         let durationDate = Date(timeIntervalSinceReferenceDate: duration)
         dateFormatter.dateFormat = "HH:mm"
         durationLabel.text = dateFormatter.string(from: durationDate)

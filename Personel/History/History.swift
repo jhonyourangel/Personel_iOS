@@ -13,13 +13,36 @@ class History: ViewController {
     @IBOutlet weak var tableView: UITableView!
     var transactions: [Transaction]! = [];
     @IBOutlet weak var addBtn: UINavigationItem!
-    
+
+    @IBOutlet weak var dateRange: DateRange!
+    var beginRangeDate: Date! = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+    var endRangeDate: Date! = Date()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "HistoryRecordViewCell", bundle: nil), forCellReuseIdentifier: "historyCell")
-
+        
     }
     
+    fileprivate func getTransactions(beginDate: Date,
+                         endDate: Date) {
+        let startDateStr = Date.stringUTCDateFrom(date: beginDate)
+        let endDateStr = Date.stringUTCDateFrom(date: endDate)
+        
+        // don't know where to put those
+        self.startLoader()
+        Network.getTransactions(startTime: startDateStr, endTime: endDateStr) { (trans, sc, error) in
+            self.stopLoader()
+            if error != nil {
+                self.presentBanner(title: "Error", message: "unable to get transactions.\(error?.localizedDescription ?? "")")
+                return
+            }
+            self.transactions = trans
+            self.tableView.reloadData()
+        }
+    }
+    
+    // func ready to be removed
     fileprivate func getTransactions() {
         Network.getTransactions { (trans, sc, error) in
             self.stopLoader()
@@ -34,8 +57,8 @@ class History: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.startLoader()
-        getTransactions()
+        updateDateRangeView()
+        getTransactions(beginDate: beginRangeDate, endDate: endRangeDate)
     }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -48,8 +71,24 @@ class History: ViewController {
         }
     }
     
+    func updateDateRangeView() {
+        dateRange.startDay.text = Date.stringDateFrom(date: beginRangeDate, format: "dd")
+        dateRange.startMonth.text = Date.stringDateFrom(date: beginRangeDate, format: "MMM")
+        dateRange.startYear.text = Date.stringDateFrom(date: beginRangeDate, format: "yyyy")
+        
+        dateRange.endDay.text = Date.stringDateFrom(date: endRangeDate, format: "dd")
+        dateRange.endMonth.text = Date.stringDateFrom(date: endRangeDate, format: "MMM")
+        dateRange.endYear.text = Date.stringDateFrom(date: endRangeDate, format: "yyyy")
+    }
+    
+    @IBAction func changeDateRange() {
+        let calendarVC = CalendarVC.makeVCFromStoryboard()
+        calendarVC.delegate = self
+        self.present(calendarVC, animated: true, completion: nil)
+    }
+    
     @IBAction func addTransaction(_ sender: Any) {
-        self.performSegue(withIdentifier: "addTransaction", sender: self)
+        self.performSegue(withIdentifier: "addTransaction", sender: nil)
     }
 }
 
@@ -87,7 +126,7 @@ extension History: UITableViewDataSource {
         let t = transactions[indexPath.row]
         
         if let proj = UserManager.projects.filter({ $0.name == t.projectName }).first {
-            print(proj.income!, proj.name!, t.projectName!)
+//            print(proj.income!, proj.name!, t.projectName!)
             cell.projectNameL.text = proj.name!
             cell.earnedL.text = "\(proj.income! * (t.workedMinutes / 60) / 100)€"
         } else {
@@ -171,3 +210,15 @@ extension History: SwipeTableViewCellDelegate {
     }
     
 }
+
+extension History: CalendarDelegate {
+    func selectedRange(beginRD: Date, endRD: Date) {
+        // to do
+        self.beginRangeDate = beginRD
+        self.endRangeDate = endRD
+        updateDateRangeView()
+        getTransactions(beginDate: beginRD, endDate: endRD)
+    }
+}
+
+
