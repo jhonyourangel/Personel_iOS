@@ -53,10 +53,10 @@ extension Date {
         return dateFormatter.string(from: date)
     }
     
-    static func stringDateFrom(date: Date, format: String) -> String {
+    static func stringDateFrom(date: Date, format: String, timeZone: String = "UTC") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        dateFormatter.timeZone = TimeZone(abbreviation: "CET")
+        dateFormatter.timeZone = TimeZone(abbreviation: timeZone)
         return dateFormatter.string(from: date)
     }
     
