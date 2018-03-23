@@ -1,0 +1,6 @@
+framework module ImagePickerWhatsApp {
+  umbrella header "ImagePickerWhatsApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

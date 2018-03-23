@@ -134,22 +134,22 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/AKPickerView-Swift/AKPickerView_Swift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ImagePickerWhatsApp/ImagePickerWhatsApp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/AKPickerView-Swift/AKPickerView_Swift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRYXBanner/BRYXBanner.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ImagePickerWhatsApp/ImagePickerWhatsApp.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework"

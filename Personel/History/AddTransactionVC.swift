@@ -157,7 +157,7 @@ class AddTransactionVC: ViewController {
         // each time i was scroling from one week to another
 //        let date = visibleDates.monthDates.first!.date
 //        selectedDate = date
-        print(selectedDate)
+//        print(selectedDate)
 //        updateFullDate(date: date)
     }
     

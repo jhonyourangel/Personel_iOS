@@ -1,46 +1,41 @@
 PODS:
-  - AKPickerView-Swift (2.0.1)
-  - Alamofire (4.6.0)
+  - Alamofire (4.7.0)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
   - BRYXBanner (0.8.0)
   - HGCircularSlider (2.0.0)
+  - ImagePickerWhatsApp (0.1.1)
   - JTAppleCalendar (7.1.5)
   - KeychainAccess (3.1.0)
   - SwipeCellKit (2.0.1)
   - TransitionButton (0.3.0)
 
 DEPENDENCIES:
-  - AKPickerView-Swift (from `https://github.com/jhonyourangel/AKPickerView-Swift.git`)
   - Alamofire
   - AlamofireNetworkActivityIndicator
   - BRYXBanner
   - HGCircularSlider
+  - ImagePickerWhatsApp (from `/Users/aiu/Documents/cocoapods/ImagePickerWhatsApp`)
   - JTAppleCalendar
   - KeychainAccess
   - SwipeCellKit
   - TransitionButton
 
 EXTERNAL SOURCES:
-  AKPickerView-Swift:
-    :git: https://github.com/jhonyourangel/AKPickerView-Swift.git
-
-CHECKOUT OPTIONS:
-  AKPickerView-Swift:
-    :commit: 0c5f6b72df4be86ad1e0acf6ab14e5fb341a310e
-    :git: https://github.com/jhonyourangel/AKPickerView-Swift.git
+  ImagePickerWhatsApp:
+    :path: /Users/aiu/Documents/cocoapods/ImagePickerWhatsApp
 
 SPEC CHECKSUMS:
-  AKPickerView-Swift: 4969de689bee54f720dd64700f7aaab02a8f2ddc
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   BRYXBanner: 406c3775789136531da6f3c98058be2f16e08a34
   HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
+  ImagePickerWhatsApp: d307ab18bbb4338b8010e498b406aec42dba3051
   JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   SwipeCellKit: 76888d93d1843dc568fdf38fff21b15dbbcf6b28
   TransitionButton: 0bf7e5ffe80030f9d10d57983a04acf2f511998a
 
-PODFILE CHECKSUM: d90c77d57253c7d57f2d030312f561fd0f28a15c
+PODFILE CHECKSUM: c07c240c2e7b9a2cdd41005cc2d09bcbebe29e53
 
 COCOAPODS: 1.4.0

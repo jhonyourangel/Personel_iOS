@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'Personel' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -9,7 +9,9 @@ target 'Personel' do
   pod 'Alamofire'
   pod 'AlamofireNetworkActivityIndicator'
   pod 'KeychainAccess'
-  pod 'AKPickerView-Swift', :git => 'https://github.com/jhonyourangel/AKPickerView-Swift.git'
+  #pod 'ImagePickerWhatsApp', :git => 'https://github.com/jhonyourangel/ImagePickerWhatsApp.git'
+  pod 'ImagePickerWhatsApp', :path => '/Users/aiu/Documents/cocoapods/ImagePickerWhatsApp'
+  
   pod 'TransitionButton'
   pod 'BRYXBanner'
   pod 'HGCircularSlider'

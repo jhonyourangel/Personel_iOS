@@ -134,7 +134,7 @@ extension History: UITableViewDataSource {
             cell.earnedL.text = "0.0€"
         }
         
-        cell.dateL.text = Date.stringDateFrom(date: t.startTime!, format: "dd MMMM yyyy")
+        cell.dateL.text = Date.stringDateFrom(date: t.startTime!, format: "dd MMMM yyyy", timeZone: "CET")
         cell.startTimeL.text = Date.stringDateFrom(date: t.startTime!, format: "HH:mm")
         cell.endTimeL.text = Date.stringDateFrom(date: t.endTime!, format: "HH:mm")
         cell.workedTimeL.text = Date.hoursAndMinutesFrom_manualCalculation(mil: Int64(t.workedMinutes * 60000))

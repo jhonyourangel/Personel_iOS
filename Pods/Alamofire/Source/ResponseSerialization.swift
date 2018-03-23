@@ -374,7 +374,7 @@ extension Request {
             )
         }
 
-        let actualEncoding = convertedEncoding ?? String.Encoding.isoLatin1
+        let actualEncoding = convertedEncoding ?? .isoLatin1
 
         if let string = String(data: validData, encoding: actualEncoding) {
             return .success(string)
